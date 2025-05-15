@@ -11,10 +11,12 @@ package clickapi
 
 import (
 	"context"
+	openapiclient "github.com/iota-uz/click/clickapi"
+	"github.com/iota-uz/click/clickapi/auth"
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"
 	"testing"
-	openapiclient "github.com/iota-uz/click/clickapi"
+	"time"
 )
 
 func Test_clickapi_PaymentAPIService(t *testing.T) {
@@ -23,13 +25,19 @@ func Test_clickapi_PaymentAPIService(t *testing.T) {
 	apiClient := openapiclient.NewAPIClient(configuration)
 
 	t.Run("Test PaymentAPIService CheckPaymentStatus", func(t *testing.T) {
-
-		t.Skip("skip test")  // remove to run test
+		t.Skip("skip test") // remove to run test
 
 		var serviceId int64
 		var paymentId int64
 
-		resp, httpRes, err := apiClient.PaymentAPI.CheckPaymentStatus(context.Background(), serviceId, paymentId).Execute()
+		ctx := auth.WithAuthContext(
+			context.Background(),
+			0,
+			"",
+			time.Now(),
+		)
+
+		resp, httpRes, err := apiClient.PaymentAPI.CheckPaymentStatus(ctx, serviceId, paymentId).Execute()
 
 		require.Nil(t, err)
 		require.NotNil(t, resp)
@@ -39,7 +47,7 @@ func Test_clickapi_PaymentAPIService(t *testing.T) {
 
 	t.Run("Test PaymentAPIService CheckPaymentStatusByMTI", func(t *testing.T) {
 
-		t.Skip("skip test")  // remove to run test
+		t.Skip("skip test") // remove to run test
 
 		var serviceId int64
 		var merchantTransId string
@@ -54,7 +62,7 @@ func Test_clickapi_PaymentAPIService(t *testing.T) {
 
 	t.Run("Test PaymentAPIService ConfirmPayment", func(t *testing.T) {
 
-		t.Skip("skip test")  // remove to run test
+		t.Skip("skip test") // remove to run test
 
 		resp, httpRes, err := apiClient.PaymentAPI.ConfirmPayment(context.Background()).Execute()
 
@@ -66,7 +74,7 @@ func Test_clickapi_PaymentAPIService(t *testing.T) {
 
 	t.Run("Test PaymentAPIService CreatePaymentWithClickPass", func(t *testing.T) {
 
-		t.Skip("skip test")  // remove to run test
+		t.Skip("skip test") // remove to run test
 
 		resp, httpRes, err := apiClient.PaymentAPI.CreatePaymentWithClickPass(context.Background()).Execute()
 
@@ -78,7 +86,7 @@ func Test_clickapi_PaymentAPIService(t *testing.T) {
 
 	t.Run("Test PaymentAPIService DisableConfirmationMode", func(t *testing.T) {
 
-		t.Skip("skip test")  // remove to run test
+		t.Skip("skip test") // remove to run test
 
 		var serviceId int64
 
@@ -92,7 +100,7 @@ func Test_clickapi_PaymentAPIService(t *testing.T) {
 
 	t.Run("Test PaymentAPIService EnableConfirmationMode", func(t *testing.T) {
 
-		t.Skip("skip test")  // remove to run test
+		t.Skip("skip test") // remove to run test
 
 		var serviceId int64
 
@@ -106,7 +114,7 @@ func Test_clickapi_PaymentAPIService(t *testing.T) {
 
 	t.Run("Test PaymentAPIService PartialRefund", func(t *testing.T) {
 
-		t.Skip("skip test")  // remove to run test
+		t.Skip("skip test") // remove to run test
 
 		var serviceId int64
 		var paymentId int64
@@ -122,7 +130,7 @@ func Test_clickapi_PaymentAPIService(t *testing.T) {
 
 	t.Run("Test PaymentAPIService PaymentWithToken", func(t *testing.T) {
 
-		t.Skip("skip test")  // remove to run test
+		t.Skip("skip test") // remove to run test
 
 		resp, httpRes, err := apiClient.PaymentAPI.PaymentWithToken(context.Background()).Execute()
 
@@ -134,7 +142,7 @@ func Test_clickapi_PaymentAPIService(t *testing.T) {
 
 	t.Run("Test PaymentAPIService ReversePayment", func(t *testing.T) {
 
-		t.Skip("skip test")  // remove to run test
+		t.Skip("skip test") // remove to run test
 
 		var serviceId int64
 		var paymentId int64

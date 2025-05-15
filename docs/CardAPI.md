@@ -1,6 +1,6 @@
 # \CardAPI
 
-All URIs are relative to *http://localhost*
+All URIs are relative to *https://api.click.uz*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
@@ -12,7 +12,7 @@ Method | HTTP request | Description
 
 ## CreateCardToken
 
-> CardTokenResponse CreateCardToken(ctx).Auth(auth).CardTokenRequest(cardTokenRequest).Execute()
+> CardTokenResponse CreateCardToken(ctx).CardTokenRequest(cardTokenRequest).Execute()
 
 Create card token
 
@@ -29,12 +29,11 @@ import (
 )
 
 func main() {
-	auth := "auth_example" // string | 
 	cardTokenRequest := *openapiclient.NewCardTokenRequest(int64(123), "CardNumber_example", "ExpireDate_example", int32(123)) // CardTokenRequest | 
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.CardAPI.CreateCardToken(context.Background()).Auth(auth).CardTokenRequest(cardTokenRequest).Execute()
+	resp, r, err := apiClient.CardAPI.CreateCardToken(context.Background()).CardTokenRequest(cardTokenRequest).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `CardAPI.CreateCardToken``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -55,7 +54,6 @@ Other parameters are passed through a pointer to a apiCreateCardTokenRequest str
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **auth** | **string** |  | 
  **cardTokenRequest** | [**CardTokenRequest**](CardTokenRequest.md) |  | 
 
 ### Return type
@@ -64,7 +62,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-No authorization required
+[AuthHeader](../README.md#AuthHeader)
 
 ### HTTP request headers
 
@@ -78,7 +76,7 @@ No authorization required
 
 ## DeleteCardToken
 
-> DeleteCardTokenResponse DeleteCardToken(ctx, serviceId, cardToken).Auth(auth).Execute()
+> DeleteCardTokenResponse DeleteCardToken(ctx, serviceId, cardToken).Execute()
 
 Delete card token
 
@@ -97,11 +95,10 @@ import (
 func main() {
 	serviceId := int64(789) // int64 | 
 	cardToken := "cardToken_example" // string | 
-	auth := "auth_example" // string | 
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.CardAPI.DeleteCardToken(context.Background(), serviceId, cardToken).Auth(auth).Execute()
+	resp, r, err := apiClient.CardAPI.DeleteCardToken(context.Background(), serviceId, cardToken).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `CardAPI.DeleteCardToken``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -129,7 +126,6 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
 
- **auth** | **string** |  | 
 
 ### Return type
 
@@ -137,7 +133,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-No authorization required
+[AuthHeader](../README.md#AuthHeader)
 
 ### HTTP request headers
 
@@ -151,7 +147,7 @@ No authorization required
 
 ## VerifyCardToken
 
-> CardTokenVerifyResponse VerifyCardToken(ctx).Auth(auth).CardTokenVerifyRequest(cardTokenVerifyRequest).Execute()
+> CardTokenVerifyResponse VerifyCardToken(ctx).CardTokenVerifyRequest(cardTokenVerifyRequest).Execute()
 
 Verify card token
 
@@ -168,12 +164,11 @@ import (
 )
 
 func main() {
-	auth := "auth_example" // string | 
 	cardTokenVerifyRequest := *openapiclient.NewCardTokenVerifyRequest(int64(123), "CardToken_example", int32(123)) // CardTokenVerifyRequest | 
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.CardAPI.VerifyCardToken(context.Background()).Auth(auth).CardTokenVerifyRequest(cardTokenVerifyRequest).Execute()
+	resp, r, err := apiClient.CardAPI.VerifyCardToken(context.Background()).CardTokenVerifyRequest(cardTokenVerifyRequest).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `CardAPI.VerifyCardToken``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -194,7 +189,6 @@ Other parameters are passed through a pointer to a apiVerifyCardTokenRequest str
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **auth** | **string** |  | 
  **cardTokenVerifyRequest** | [**CardTokenVerifyRequest**](CardTokenVerifyRequest.md) |  | 
 
 ### Return type
@@ -203,7 +197,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-No authorization required
+[AuthHeader](../README.md#AuthHeader)
 
 ### HTTP request headers
 

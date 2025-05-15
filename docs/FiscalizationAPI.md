@@ -1,6 +1,6 @@
 # \FiscalizationAPI
 
-All URIs are relative to *http://localhost*
+All URIs are relative to *https://api.click.uz*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
@@ -12,7 +12,7 @@ Method | HTTP request | Description
 
 ## GetFiscalData
 
-> FiscalDataResponse GetFiscalData(ctx, serviceId, paymentId).Auth(auth).Execute()
+> FiscalDataResponse GetFiscalData(ctx, serviceId, paymentId).Execute()
 
 Retrieving fiscal data (URL)
 
@@ -31,11 +31,10 @@ import (
 func main() {
 	serviceId := int64(789) // int64 | 
 	paymentId := int64(789) // int64 | 
-	auth := "auth_example" // string | 
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.FiscalizationAPI.GetFiscalData(context.Background(), serviceId, paymentId).Auth(auth).Execute()
+	resp, r, err := apiClient.FiscalizationAPI.GetFiscalData(context.Background(), serviceId, paymentId).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `FiscalizationAPI.GetFiscalData``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -63,7 +62,6 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
 
- **auth** | **string** |  | 
 
 ### Return type
 
@@ -71,7 +69,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-No authorization required
+[AuthHeader](../README.md#AuthHeader)
 
 ### HTTP request headers
 
@@ -85,7 +83,7 @@ No authorization required
 
 ## SubmitFiscalItems
 
-> FiscalizationResponse SubmitFiscalItems(ctx).Auth(auth).FiscalizationRequest(fiscalizationRequest).Execute()
+> FiscalizationResponse SubmitFiscalItems(ctx).FiscalizationRequest(fiscalizationRequest).Execute()
 
 Fiscalization of goods and services
 
@@ -102,12 +100,11 @@ import (
 )
 
 func main() {
-	auth := "auth_example" // string | 
 	fiscalizationRequest := *openapiclient.NewFiscalizationRequest(int64(123), int64(123), []openapiclient.Item{*openapiclient.NewItem("Name_example", "SPIC_example", int64(123), int64(123))}) // FiscalizationRequest | 
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.FiscalizationAPI.SubmitFiscalItems(context.Background()).Auth(auth).FiscalizationRequest(fiscalizationRequest).Execute()
+	resp, r, err := apiClient.FiscalizationAPI.SubmitFiscalItems(context.Background()).FiscalizationRequest(fiscalizationRequest).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `FiscalizationAPI.SubmitFiscalItems``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -128,7 +125,6 @@ Other parameters are passed through a pointer to a apiSubmitFiscalItemsRequest s
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **auth** | **string** |  | 
  **fiscalizationRequest** | [**FiscalizationRequest**](FiscalizationRequest.md) |  | 
 
 ### Return type
@@ -137,7 +133,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-No authorization required
+[AuthHeader](../README.md#AuthHeader)
 
 ### HTTP request headers
 
@@ -151,7 +147,7 @@ No authorization required
 
 ## SubmitFiscalQRCode
 
-> FiscalQRCodeResponse SubmitFiscalQRCode(ctx).Auth(auth).FiscalQRCodeRequest(fiscalQRCodeRequest).Execute()
+> FiscalQRCodeResponse SubmitFiscalQRCode(ctx).FiscalQRCodeRequest(fiscalQRCodeRequest).Execute()
 
 Registering already fiscalized check
 
@@ -168,12 +164,11 @@ import (
 )
 
 func main() {
-	auth := "auth_example" // string | 
 	fiscalQRCodeRequest := *openapiclient.NewFiscalQRCodeRequest(int64(123), int64(123), "Qrcode_example") // FiscalQRCodeRequest | 
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.FiscalizationAPI.SubmitFiscalQRCode(context.Background()).Auth(auth).FiscalQRCodeRequest(fiscalQRCodeRequest).Execute()
+	resp, r, err := apiClient.FiscalizationAPI.SubmitFiscalQRCode(context.Background()).FiscalQRCodeRequest(fiscalQRCodeRequest).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `FiscalizationAPI.SubmitFiscalQRCode``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -194,7 +189,6 @@ Other parameters are passed through a pointer to a apiSubmitFiscalQRCodeRequest 
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **auth** | **string** |  | 
  **fiscalQRCodeRequest** | [**FiscalQRCodeRequest**](FiscalQRCodeRequest.md) |  | 
 
 ### Return type
@@ -203,7 +197,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-No authorization required
+[AuthHeader](../README.md#AuthHeader)
 
 ### HTTP request headers
 

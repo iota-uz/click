@@ -1,0 +1,1264 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "title": "CLICK-PASS-API",
+    "version": "1.0.0",
+    "description": "API for managing payments and fiscalization with CLICK Pass.",
+    "contact": {
+      "name": "IOTA Team",
+      "email": "danil@iota.uz",
+      "url": "https://www.iota.uz"
+    },
+    "license": {
+      "name": "Apache License 2.0",
+      "url": "https://www.apache.org/licenses/LICENSE-2.0.html"
+    }
+  },
+  "servers": [
+    {
+      "url": "https://api.click.uz",
+      "description": "Official CLICK API server"
+    }
+  ],
+  "paths": {
+    "/v2/merchant/click_pass/payment": {
+      "post": {
+        "summary": "Payment with CLICK Pass",
+        "tags": [
+          "Payment"
+        ],
+        "operationId": "createPaymentWithClickPass",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ClickPassPaymentRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Payment created successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ClickPassPaymentResponse"
+                }
+              }
+            }
+          }
+        },
+        "parameters": []
+      }
+    },
+    "/v2/merchant/payment/status/{service_id}/{payment_id}": {
+      "get": {
+        "summary": "Payment status check",
+        "tags": [
+          "Payment"
+        ],
+        "operationId": "checkPaymentStatus",
+        "parameters": [
+          {
+            "name": "service_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          },
+          {
+            "name": "payment_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Payment status retrieved successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PaymentStatusResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/v2/merchant/payment/reversal/{service_id}/{payment_id}": {
+      "delete": {
+        "summary": "Payment reversal (cancel)",
+        "tags": [
+          "Payment"
+        ],
+        "operationId": "reversePayment",
+        "parameters": [
+          {
+            "name": "service_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          },
+          {
+            "name": "payment_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Payment reversed successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PaymentReversalResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/v2/merchant/click_pass/confirm": {
+      "post": {
+        "summary": "Payment confirmation",
+        "tags": [
+          "Payment"
+        ],
+        "operationId": "confirmPayment",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/PaymentConfirmationRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Payment confirmed successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PaymentConfirmationResponse"
+                }
+              }
+            }
+          }
+        },
+        "parameters": []
+      }
+    },
+    "/v2/merchant/click_pass/confirmation/{service_id}": {
+      "put": {
+        "summary": "Enable confirmation mode",
+        "tags": [
+          "Payment"
+        ],
+        "operationId": "enableConfirmationMode",
+        "parameters": [
+          {
+            "name": "service_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Confirmation mode enabled",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ConfirmationModeResponse"
+                }
+              }
+            }
+          }
+        }
+      },
+      "delete": {
+        "summary": "Disable confirmation mode",
+        "tags": [
+          "Payment"
+        ],
+        "operationId": "disableConfirmationMode",
+        "parameters": [
+          {
+            "name": "service_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Confirmation mode disabled",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ConfirmationModeResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/v2/merchant/payment/ofd_data/submit_items": {
+      "post": {
+        "summary": "Fiscalization of goods and services",
+        "tags": [
+          "Fiscalization"
+        ],
+        "operationId": "submitFiscalItems",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/FiscalizationRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Fiscal data submitted successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/FiscalizationResponse"
+                }
+              }
+            }
+          }
+        },
+        "parameters": []
+      }
+    },
+    "/v2/merchant/payment/ofd_data/submit_qrcode": {
+      "post": {
+        "summary": "Registering already fiscalized check",
+        "tags": [
+          "Fiscalization"
+        ],
+        "operationId": "submitFiscalQRCode",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/FiscalQRCodeRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Fiscal QR code registered successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/FiscalQRCodeResponse"
+                }
+              }
+            }
+          }
+        },
+        "parameters": []
+      }
+    },
+    "/v2/merchant/payment/ofd_data/{service_id}/{payment_id}": {
+      "get": {
+        "summary": "Retrieving fiscal data (URL)",
+        "tags": [
+          "Fiscalization"
+        ],
+        "operationId": "getFiscalData",
+        "parameters": [
+          {
+            "name": "service_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          },
+          {
+            "name": "payment_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Fiscal data URL retrieved successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/FiscalDataResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/v2/merchant/invoice/create": {
+      "post": {
+        "summary": "Create invoice",
+        "tags": [
+          "Invoice"
+        ],
+        "operationId": "createInvoice",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/InvoiceRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Invoice created successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/InvoiceResponse"
+                }
+              }
+            }
+          }
+        },
+        "parameters": []
+      }
+    },
+    "/v2/merchant/invoice/status/{service_id}/{invoice_id}": {
+      "get": {
+        "summary": "Invoice status check",
+        "tags": [
+          "Invoice"
+        ],
+        "operationId": "checkInvoiceStatus",
+        "parameters": [
+          {
+            "name": "service_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          },
+          {
+            "name": "invoice_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Invoice status retrieved successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/InvoiceStatusResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/v2/merchant/payment/status_by_mti/{service_id}/{merchant_trans_id}": {
+      "get": {
+        "summary": "Payment status check by merchant_trans_id",
+        "tags": [
+          "Payment"
+        ],
+        "operationId": "checkPaymentStatusByMTI",
+        "parameters": [
+          {
+            "name": "service_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          },
+          {
+            "name": "merchant_trans_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Payment status by merchant_trans_id retrieved successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PaymentStatusByMTIResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/v2/merchant/payment/partial_reversal/{service_id}/{payment_id}/{amount}": {
+      "delete": {
+        "summary": "Partial refund",
+        "tags": [
+          "Payment"
+        ],
+        "operationId": "partialRefund",
+        "parameters": [
+          {
+            "name": "service_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          },
+          {
+            "name": "payment_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          },
+          {
+            "name": "amount",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "number",
+              "format": "float"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Partial refund processed successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PartialRefundResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/v2/merchant/card_token/request": {
+      "post": {
+        "summary": "Create card token",
+        "tags": [
+          "Card"
+        ],
+        "operationId": "createCardToken",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CardTokenRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Card token created successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CardTokenResponse"
+                }
+              }
+            }
+          }
+        },
+        "parameters": []
+      }
+    },
+    "/v2/merchant/card_token/verify": {
+      "post": {
+        "summary": "Verify card token",
+        "tags": [
+          "Card"
+        ],
+        "operationId": "verifyCardToken",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CardTokenVerifyRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Card token verified successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CardTokenVerifyResponse"
+                }
+              }
+            }
+          }
+        },
+        "parameters": []
+      }
+    },
+    "/v2/merchant/card_token/payment": {
+      "post": {
+        "summary": "Payment with token",
+        "tags": [
+          "Payment"
+        ],
+        "operationId": "paymentWithToken",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/TokenPaymentRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Payment with token processed successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/TokenPaymentResponse"
+                }
+              }
+            }
+          }
+        },
+        "parameters": []
+      }
+    },
+    "/v2/merchant/card_token/{service_id}/{card_token}": {
+      "delete": {
+        "summary": "Delete card token",
+        "tags": [
+          "Card"
+        ],
+        "operationId": "deleteCardToken",
+        "parameters": [
+          {
+            "name": "service_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          },
+          {
+            "name": "card_token",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Card token deleted successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/DeleteCardTokenResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "ClickPassPaymentRequest": {
+        "type": "object",
+        "properties": {
+          "service_id": {
+            "type": "integer",
+            "format": "int64",
+            "description": "Service ID"
+          },
+          "otp_data": {
+            "type": "string",
+            "description": "QR code contents"
+          },
+          "amount": {
+            "type": "number",
+            "format": "float",
+            "description": "Payment amount"
+          },
+          "cashbox_code": {
+            "type": "string",
+            "description": "Cashbox identifier"
+          },
+          "transaction_id": {
+            "type": "string",
+            "description": "Merchant transaction ID"
+          }
+        },
+        "required": [
+          "service_id",
+          "otp_data",
+          "amount"
+        ]
+      },
+      "ClickPassPaymentResponse": {
+        "type": "object",
+        "properties": {
+          "error_code": {
+            "type": "integer",
+            "description": "Error code"
+          },
+          "error_note": {
+            "type": "string",
+            "description": "Error description"
+          },
+          "payment_id": {
+            "type": "integer",
+            "format": "int64",
+            "description": "Payment Identifier"
+          },
+          "payment_status": {
+            "type": "integer",
+            "description": "Payment status code"
+          },
+          "confirm_mode": {
+            "type": "integer",
+            "description": "Confirmation mode status"
+          },
+          "card_type": {
+            "type": "string",
+            "description": "Card type"
+          },
+          "processing_type": {
+            "type": "string",
+            "description": "Card processing"
+          },
+          "card_number": {
+            "type": "string",
+            "description": "Masked card number"
+          },
+          "phone_number": {
+            "type": "string",
+            "description": "Phone number"
+          }
+        }
+      },
+      "PaymentStatusResponse": {
+        "type": "object",
+        "properties": {
+          "error_code": {
+            "type": "integer",
+            "description": "Error code"
+          },
+          "error_note": {
+            "type": "string",
+            "description": "Error description"
+          },
+          "payment_id": {
+            "type": "string",
+            "description": "Payment Identifier"
+          },
+          "payment_status": {
+            "type": "integer",
+            "description": "Payment status code"
+          }
+        }
+      },
+      "PaymentReversalResponse": {
+        "type": "object",
+        "properties": {
+          "error_code": {
+            "type": "integer",
+            "description": "Error code"
+          },
+          "error_note": {
+            "type": "string",
+            "description": "Error description"
+          },
+          "payment_id": {
+            "type": "integer",
+            "format": "int64",
+            "description": "Payment Identifier"
+          }
+        }
+      },
+      "PaymentConfirmationRequest": {
+        "type": "object",
+        "properties": {
+          "service_id": {
+            "type": "integer",
+            "format": "int64",
+            "description": "Service ID"
+          },
+          "payment_id": {
+            "type": "integer",
+            "format": "int64",
+            "description": "Payment Identifier"
+          }
+        },
+        "required": [
+          "service_id",
+          "payment_id"
+        ]
+      },
+      "PaymentConfirmationResponse": {
+        "type": "object",
+        "properties": {
+          "error_code": {
+            "type": "integer",
+            "description": "Error code"
+          },
+          "error_note": {
+            "type": "string",
+            "description": "Payment confirmed"
+          }
+        }
+      },
+      "ConfirmationModeResponse": {
+        "type": "object",
+        "properties": {
+          "error_code": {
+            "type": "integer",
+            "description": "Error code"
+          },
+          "error_note": {
+            "type": "string",
+            "description": "Confirmation mode status"
+          }
+        }
+      },
+      "FiscalizationRequest": {
+        "type": "object",
+        "properties": {
+          "service_id": {
+            "type": "integer",
+            "format": "int64",
+            "description": "Service ID"
+          },
+          "payment_id": {
+            "type": "integer",
+            "format": "int64",
+            "description": "Payment Identifier"
+          },
+          "items": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Item"
+            },
+            "description": "Items or services list"
+          },
+          "received_ecash": {
+            "type": "integer",
+            "description": "Amount paid by e-cash in tiyins"
+          },
+          "received_cash": {
+            "type": "integer",
+            "description": "Amount paid by cash in tiyins"
+          },
+          "received_card": {
+            "type": "integer",
+            "description": "Amount paid by card in tiyins"
+          }
+        },
+        "required": [
+          "service_id",
+          "payment_id",
+          "items"
+        ]
+      },
+      "Item": {
+        "type": "object",
+        "properties": {
+          "Name": {
+            "type": "string",
+            "description": "Item/service name with units at the end"
+          },
+          "Barcode": {
+            "type": "string",
+            "description": "Barcode"
+          },
+          "Labels": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "description": "Array of marking codes"
+          },
+          "SPIC": {
+            "type": "string",
+            "description": "SPIC code"
+          },
+          "Units": {
+            "type": "integer",
+            "format": "int64",
+            "description": "Unit code"
+          },
+          "PackageCode": {
+            "type": "string",
+            "description": "Package Code"
+          },
+          "GoodPrice": {
+            "type": "integer",
+            "format": "int64",
+            "description": "Price of one product/service unit"
+          },
+          "Price": {
+            "type": "integer",
+            "format": "int64",
+            "description": "The total amount of the item, including quantity, excluding discounts"
+          },
+          "Amount": {
+            "type": "integer",
+            "format": "int64",
+            "description": "Quantity"
+          },
+          "VAT": {
+            "type": "integer",
+            "format": "int64",
+            "description": "Amount of VAT in tiyins"
+          },
+          "VATPercent": {
+            "type": "integer",
+            "description": "VAT percentage"
+          },
+          "Discount": {
+            "type": "integer",
+            "format": "int64",
+            "description": "Discount"
+          },
+          "Other": {
+            "type": "integer",
+            "format": "int64",
+            "description": "Other discounts"
+          },
+          "CommissionInfo": {
+            "$ref": "#/components/schemas/CommissionInfo"
+          }
+        },
+        "required": [
+          "Name",
+          "SPIC",
+          "Units",
+          "GoodPrice"
+        ]
+      },
+      "CommissionInfo": {
+        "type": "object",
+        "properties": {
+          "TIN": {
+            "type": "string",
+            "description": "TIN"
+          },
+          "PINFL": {
+            "type": "string",
+            "description": "PINFL"
+          }
+        }
+      },
+      "FiscalizationResponse": {
+        "type": "object",
+        "properties": {
+          "error_code": {
+            "type": "integer",
+            "description": "Error code"
+          },
+          "error_note": {
+            "type": "string",
+            "description": "Error description"
+          }
+        }
+      },
+      "FiscalQRCodeRequest": {
+        "type": "object",
+        "properties": {
+          "service_id": {
+            "type": "integer",
+            "format": "int64",
+            "description": "Service ID"
+          },
+          "payment_id": {
+            "type": "integer",
+            "format": "int64",
+            "description": "Payment Identifier"
+          },
+          "qrcode": {
+            "type": "string",
+            "description": "Check URL"
+          }
+        },
+        "required": [
+          "service_id",
+          "payment_id",
+          "qrcode"
+        ]
+      },
+      "FiscalQRCodeResponse": {
+        "type": "object",
+        "properties": {
+          "error_code": {
+            "type": "integer",
+            "description": "Error code"
+          },
+          "error_note": {
+            "type": "string",
+            "description": "Error description"
+          }
+        }
+      },
+      "FiscalDataResponse": {
+        "type": "object",
+        "properties": {
+          "paymentId": {
+            "type": "integer",
+            "format": "int64",
+            "description": "Payment Id"
+          },
+          "qrCodeURL": {
+            "type": "string",
+            "description": "URL"
+          }
+        }
+      },
+      "InvoiceRequest": {
+        "type": "object",
+        "properties": {
+          "service_id": {
+            "type": "integer",
+            "format": "int64",
+            "description": "Service ID"
+          },
+          "amount": {
+            "type": "number",
+            "format": "float",
+            "description": "Requested amount"
+          },
+          "phone_number": {
+            "type": "string",
+            "description": "Invoice receiver"
+          },
+          "merchant_trans_id": {
+            "type": "string",
+            "description": "Order ID or personal account"
+          }
+        },
+        "required": [
+          "service_id",
+          "amount",
+          "phone_number",
+          "merchant_trans_id"
+        ]
+      },
+      "InvoiceResponse": {
+        "type": "object",
+        "properties": {
+          "error_code": {
+            "type": "integer",
+            "description": "Error code"
+          },
+          "error_note": {
+            "type": "string",
+            "description": "Error description"
+          },
+          "invoice_id": {
+            "type": "integer",
+            "format": "int64",
+            "description": "Invoice Identifier"
+          }
+        }
+      },
+      "InvoiceStatusResponse": {
+        "type": "object",
+        "properties": {
+          "error_code": {
+            "type": "integer",
+            "description": "Error code"
+          },
+          "error_note": {
+            "type": "string",
+            "description": "Error description"
+          },
+          "invoice_status": {
+            "type": "integer",
+            "format": "int64",
+            "description": "Invoice status code"
+          },
+          "invoice_status_note": {
+            "type": "string",
+            "description": "Status description"
+          }
+        }
+      },
+      "PaymentStatusByMTIResponse": {
+        "type": "object",
+        "properties": {
+          "error_code": {
+            "type": "integer",
+            "description": "Error code"
+          },
+          "error_note": {
+            "type": "string",
+            "description": "Error description"
+          },
+          "payment_id": {
+            "type": "integer",
+            "format": "int64",
+            "description": "Payment Identifier"
+          },
+          "merchant_trans_id": {
+            "type": "string",
+            "description": "Merchant transaction ID"
+          }
+        }
+      },
+      "PartialRefundResponse": {
+        "type": "object",
+        "properties": {
+          "error_code": {
+            "type": "integer",
+            "description": "Error code"
+          },
+          "error_note": {
+            "type": "string",
+            "description": "Error description"
+          }
+        }
+      },
+      "CardTokenRequest": {
+        "type": "object",
+        "properties": {
+          "service_id": {
+            "type": "integer",
+            "format": "int64",
+            "description": "Service ID"
+          },
+          "card_number": {
+            "type": "string",
+            "description": "Card number"
+          },
+          "expire_date": {
+            "type": "string",
+            "description": "Card expire date"
+          },
+          "temporary": {
+            "type": "integer",
+            "description": "Create temporary card"
+          }
+        },
+        "required": [
+          "service_id",
+          "card_number",
+          "expire_date",
+          "temporary"
+        ]
+      },
+      "CardTokenResponse": {
+        "type": "object",
+        "properties": {
+          "error_code": {
+            "type": "integer",
+            "description": "Error code"
+          },
+          "error_note": {
+            "type": "string",
+            "description": "Error description"
+          },
+          "card_token": {
+            "type": "string",
+            "description": "Card token"
+          },
+          "phone_number": {
+            "type": "string",
+            "description": "User phone number"
+          },
+          "temporary": {
+            "type": "integer",
+            "description": "Type of created token"
+          }
+        }
+      },
+      "CardTokenVerifyRequest": {
+        "type": "object",
+        "properties": {
+          "service_id": {
+            "type": "integer",
+            "format": "int64",
+            "description": "Service ID"
+          },
+          "card_token": {
+            "type": "string",
+            "description": "Card token"
+          },
+          "sms_code": {
+            "type": "integer",
+            "description": "Received SMS code"
+          }
+        },
+        "required": [
+          "service_id",
+          "card_token",
+          "sms_code"
+        ]
+      },
+      "CardTokenVerifyResponse": {
+        "type": "object",
+        "properties": {
+          "error_code": {
+            "type": "integer",
+            "description": "Error code"
+          },
+          "error_note": {
+            "type": "string",
+            "description": "Error description"
+          },
+          "card_number": {
+            "type": "string",
+            "description": "Card number"
+          }
+        }
+      },
+      "TokenPaymentRequest": {
+        "type": "object",
+        "properties": {
+          "service_id": {
+            "type": "integer",
+            "format": "int64",
+            "description": "Service ID"
+          },
+          "card_token": {
+            "type": "string",
+            "description": "Card token"
+          },
+          "amount": {
+            "type": "number",
+            "format": "float",
+            "description": "Payment amount"
+          },
+          "transaction_parameter": {
+            "type": "string",
+            "description": "Merchant transaction ID"
+          }
+        },
+        "required": [
+          "service_id",
+          "card_token",
+          "amount",
+          "transaction_parameter"
+        ]
+      },
+      "TokenPaymentResponse": {
+        "type": "object",
+        "properties": {
+          "error_code": {
+            "type": "integer",
+            "description": "Error code"
+          },
+          "error_note": {
+            "type": "string",
+            "description": "Error description"
+          },
+          "payment_id": {
+            "type": "integer",
+            "format": "int64",
+            "description": "Payment Identifier"
+          },
+          "payment_status": {
+            "type": "integer",
+            "description": "Payment status code"
+          }
+        }
+      },
+      "DeleteCardTokenResponse": {
+        "type": "object",
+        "properties": {
+          "error_code": {
+            "type": "integer",
+            "description": "Error code"
+          },
+          "error_note": {
+            "type": "string",
+            "description": "Error description"
+          }
+        }
+      }
+    },
+    "securitySchemes": {
+      "AuthHeader": {
+        "type": "apiKey",
+        "in": "header",
+        "name": "Auth"
+      }
+    }
+  },
+  "security": [
+    {
+      "AuthHeader": []
+    }
+  ]
+}

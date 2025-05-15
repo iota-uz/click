@@ -1,6 +1,6 @@
 # \InvoiceAPI
 
-All URIs are relative to *http://localhost*
+All URIs are relative to *https://api.click.uz*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
@@ -11,7 +11,7 @@ Method | HTTP request | Description
 
 ## CheckInvoiceStatus
 
-> InvoiceStatusResponse CheckInvoiceStatus(ctx, serviceId, invoiceId).Auth(auth).Execute()
+> InvoiceStatusResponse CheckInvoiceStatus(ctx, serviceId, invoiceId).Execute()
 
 Invoice status check
 
@@ -30,11 +30,10 @@ import (
 func main() {
 	serviceId := int64(789) // int64 | 
 	invoiceId := int64(789) // int64 | 
-	auth := "auth_example" // string | 
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.InvoiceAPI.CheckInvoiceStatus(context.Background(), serviceId, invoiceId).Auth(auth).Execute()
+	resp, r, err := apiClient.InvoiceAPI.CheckInvoiceStatus(context.Background(), serviceId, invoiceId).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `InvoiceAPI.CheckInvoiceStatus``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -62,7 +61,6 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
 
- **auth** | **string** |  | 
 
 ### Return type
 
@@ -70,7 +68,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-No authorization required
+[AuthHeader](../README.md#AuthHeader)
 
 ### HTTP request headers
 
@@ -84,7 +82,7 @@ No authorization required
 
 ## CreateInvoice
 
-> InvoiceResponse CreateInvoice(ctx).Auth(auth).InvoiceRequest(invoiceRequest).Execute()
+> InvoiceResponse CreateInvoice(ctx).InvoiceRequest(invoiceRequest).Execute()
 
 Create invoice
 
@@ -101,12 +99,11 @@ import (
 )
 
 func main() {
-	auth := "auth_example" // string | 
 	invoiceRequest := *openapiclient.NewInvoiceRequest(int64(123), float32(123), "PhoneNumber_example", "MerchantTransId_example") // InvoiceRequest | 
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.InvoiceAPI.CreateInvoice(context.Background()).Auth(auth).InvoiceRequest(invoiceRequest).Execute()
+	resp, r, err := apiClient.InvoiceAPI.CreateInvoice(context.Background()).InvoiceRequest(invoiceRequest).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `InvoiceAPI.CreateInvoice``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -127,7 +124,6 @@ Other parameters are passed through a pointer to a apiCreateInvoiceRequest struc
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **auth** | **string** |  | 
  **invoiceRequest** | [**InvoiceRequest**](InvoiceRequest.md) |  | 
 
 ### Return type
@@ -136,7 +132,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-No authorization required
+[AuthHeader](../README.md#AuthHeader)
 
 ### HTTP request headers
 

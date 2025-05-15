@@ -11,10 +11,10 @@ package clickapi
 
 import (
 	"context"
+	openapiclient "github.com/iota-uz/click/clickapi"
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"
 	"testing"
-	openapiclient "github.com/iota-uz/click/clickapi"
 )
 
 func Test_clickapi_FiscalizationAPIService(t *testing.T) {
@@ -24,7 +24,7 @@ func Test_clickapi_FiscalizationAPIService(t *testing.T) {
 
 	t.Run("Test FiscalizationAPIService GetFiscalData", func(t *testing.T) {
 
-		t.Skip("skip test")  // remove to run test
+		t.Skip("skip test") // remove to run test
 
 		var serviceId int64
 		var paymentId int64
@@ -39,7 +39,7 @@ func Test_clickapi_FiscalizationAPIService(t *testing.T) {
 
 	t.Run("Test FiscalizationAPIService SubmitFiscalItems", func(t *testing.T) {
 
-		t.Skip("skip test")  // remove to run test
+		t.Skip("skip test") // remove to run test
 
 		resp, httpRes, err := apiClient.FiscalizationAPI.SubmitFiscalItems(context.Background()).Execute()
 
@@ -51,7 +51,7 @@ func Test_clickapi_FiscalizationAPIService(t *testing.T) {
 
 	t.Run("Test FiscalizationAPIService SubmitFiscalQRCode", func(t *testing.T) {
 
-		t.Skip("skip test")  // remove to run test
+		t.Skip("skip test") // remove to run test
 
 		resp, httpRes, err := apiClient.FiscalizationAPI.SubmitFiscalQRCode(context.Background()).Execute()
 

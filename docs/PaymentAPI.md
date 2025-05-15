@@ -1,6 +1,6 @@
 # \PaymentAPI
 
-All URIs are relative to *http://localhost*
+All URIs are relative to *https://api.click.uz*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
@@ -18,7 +18,7 @@ Method | HTTP request | Description
 
 ## CheckPaymentStatus
 
-> PaymentStatusResponse CheckPaymentStatus(ctx, serviceId, paymentId).Auth(auth).Execute()
+> PaymentStatusResponse CheckPaymentStatus(ctx, serviceId, paymentId).Execute()
 
 Payment status check
 
@@ -37,11 +37,10 @@ import (
 func main() {
 	serviceId := int64(789) // int64 | 
 	paymentId := int64(789) // int64 | 
-	auth := "auth_example" // string | 
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.PaymentAPI.CheckPaymentStatus(context.Background(), serviceId, paymentId).Auth(auth).Execute()
+	resp, r, err := apiClient.PaymentAPI.CheckPaymentStatus(context.Background(), serviceId, paymentId).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `PaymentAPI.CheckPaymentStatus``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -69,7 +68,6 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
 
- **auth** | **string** |  | 
 
 ### Return type
 
@@ -77,7 +75,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-No authorization required
+[AuthHeader](../README.md#AuthHeader)
 
 ### HTTP request headers
 
@@ -91,7 +89,7 @@ No authorization required
 
 ## CheckPaymentStatusByMTI
 
-> PaymentStatusByMTIResponse CheckPaymentStatusByMTI(ctx, serviceId, merchantTransId).Auth(auth).Execute()
+> PaymentStatusByMTIResponse CheckPaymentStatusByMTI(ctx, serviceId, merchantTransId).Execute()
 
 Payment status check by merchant_trans_id
 
@@ -110,11 +108,10 @@ import (
 func main() {
 	serviceId := int64(789) // int64 | 
 	merchantTransId := "merchantTransId_example" // string | 
-	auth := "auth_example" // string | 
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.PaymentAPI.CheckPaymentStatusByMTI(context.Background(), serviceId, merchantTransId).Auth(auth).Execute()
+	resp, r, err := apiClient.PaymentAPI.CheckPaymentStatusByMTI(context.Background(), serviceId, merchantTransId).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `PaymentAPI.CheckPaymentStatusByMTI``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -142,7 +139,6 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
 
- **auth** | **string** |  | 
 
 ### Return type
 
@@ -150,7 +146,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-No authorization required
+[AuthHeader](../README.md#AuthHeader)
 
 ### HTTP request headers
 
@@ -164,7 +160,7 @@ No authorization required
 
 ## ConfirmPayment
 
-> PaymentConfirmationResponse ConfirmPayment(ctx).Auth(auth).PaymentConfirmationRequest(paymentConfirmationRequest).Execute()
+> PaymentConfirmationResponse ConfirmPayment(ctx).PaymentConfirmationRequest(paymentConfirmationRequest).Execute()
 
 Payment confirmation
 
@@ -181,12 +177,11 @@ import (
 )
 
 func main() {
-	auth := "auth_example" // string | 
 	paymentConfirmationRequest := *openapiclient.NewPaymentConfirmationRequest(int64(123), int64(123)) // PaymentConfirmationRequest | 
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.PaymentAPI.ConfirmPayment(context.Background()).Auth(auth).PaymentConfirmationRequest(paymentConfirmationRequest).Execute()
+	resp, r, err := apiClient.PaymentAPI.ConfirmPayment(context.Background()).PaymentConfirmationRequest(paymentConfirmationRequest).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `PaymentAPI.ConfirmPayment``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -207,7 +202,6 @@ Other parameters are passed through a pointer to a apiConfirmPaymentRequest stru
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **auth** | **string** |  | 
  **paymentConfirmationRequest** | [**PaymentConfirmationRequest**](PaymentConfirmationRequest.md) |  | 
 
 ### Return type
@@ -216,7 +210,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-No authorization required
+[AuthHeader](../README.md#AuthHeader)
 
 ### HTTP request headers
 
@@ -230,7 +224,7 @@ No authorization required
 
 ## CreatePaymentWithClickPass
 
-> ClickPassPaymentResponse CreatePaymentWithClickPass(ctx).Auth(auth).ClickPassPaymentRequest(clickPassPaymentRequest).Execute()
+> ClickPassPaymentResponse CreatePaymentWithClickPass(ctx).ClickPassPaymentRequest(clickPassPaymentRequest).Execute()
 
 Payment with CLICK Pass
 
@@ -247,12 +241,11 @@ import (
 )
 
 func main() {
-	auth := "auth_example" // string | 
 	clickPassPaymentRequest := *openapiclient.NewClickPassPaymentRequest(int64(123), "OtpData_example", float32(123)) // ClickPassPaymentRequest | 
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.PaymentAPI.CreatePaymentWithClickPass(context.Background()).Auth(auth).ClickPassPaymentRequest(clickPassPaymentRequest).Execute()
+	resp, r, err := apiClient.PaymentAPI.CreatePaymentWithClickPass(context.Background()).ClickPassPaymentRequest(clickPassPaymentRequest).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `PaymentAPI.CreatePaymentWithClickPass``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -273,7 +266,6 @@ Other parameters are passed through a pointer to a apiCreatePaymentWithClickPass
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **auth** | **string** |  | 
  **clickPassPaymentRequest** | [**ClickPassPaymentRequest**](ClickPassPaymentRequest.md) |  | 
 
 ### Return type
@@ -282,7 +274,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-No authorization required
+[AuthHeader](../README.md#AuthHeader)
 
 ### HTTP request headers
 
@@ -296,7 +288,7 @@ No authorization required
 
 ## DisableConfirmationMode
 
-> ConfirmationModeResponse DisableConfirmationMode(ctx, serviceId).Auth(auth).Execute()
+> ConfirmationModeResponse DisableConfirmationMode(ctx, serviceId).Execute()
 
 Disable confirmation mode
 
@@ -314,11 +306,10 @@ import (
 
 func main() {
 	serviceId := int64(789) // int64 | 
-	auth := "auth_example" // string | 
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.PaymentAPI.DisableConfirmationMode(context.Background(), serviceId).Auth(auth).Execute()
+	resp, r, err := apiClient.PaymentAPI.DisableConfirmationMode(context.Background(), serviceId).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `PaymentAPI.DisableConfirmationMode``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -344,7 +335,6 @@ Other parameters are passed through a pointer to a apiDisableConfirmationModeReq
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
- **auth** | **string** |  | 
 
 ### Return type
 
@@ -352,7 +342,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-No authorization required
+[AuthHeader](../README.md#AuthHeader)
 
 ### HTTP request headers
 
@@ -366,7 +356,7 @@ No authorization required
 
 ## EnableConfirmationMode
 
-> ConfirmationModeResponse EnableConfirmationMode(ctx, serviceId).Auth(auth).Execute()
+> ConfirmationModeResponse EnableConfirmationMode(ctx, serviceId).Execute()
 
 Enable confirmation mode
 
@@ -384,11 +374,10 @@ import (
 
 func main() {
 	serviceId := int64(789) // int64 | 
-	auth := "auth_example" // string | 
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.PaymentAPI.EnableConfirmationMode(context.Background(), serviceId).Auth(auth).Execute()
+	resp, r, err := apiClient.PaymentAPI.EnableConfirmationMode(context.Background(), serviceId).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `PaymentAPI.EnableConfirmationMode``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -414,7 +403,6 @@ Other parameters are passed through a pointer to a apiEnableConfirmationModeRequ
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
- **auth** | **string** |  | 
 
 ### Return type
 
@@ -422,7 +410,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-No authorization required
+[AuthHeader](../README.md#AuthHeader)
 
 ### HTTP request headers
 
@@ -436,7 +424,7 @@ No authorization required
 
 ## PartialRefund
 
-> PartialRefundResponse PartialRefund(ctx, serviceId, paymentId, amount).Auth(auth).Execute()
+> PartialRefundResponse PartialRefund(ctx, serviceId, paymentId, amount).Execute()
 
 Partial refund
 
@@ -456,11 +444,10 @@ func main() {
 	serviceId := int64(789) // int64 | 
 	paymentId := int64(789) // int64 | 
 	amount := float32(3.4) // float32 | 
-	auth := "auth_example" // string | 
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.PaymentAPI.PartialRefund(context.Background(), serviceId, paymentId, amount).Auth(auth).Execute()
+	resp, r, err := apiClient.PaymentAPI.PartialRefund(context.Background(), serviceId, paymentId, amount).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `PaymentAPI.PartialRefund``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -490,7 +477,6 @@ Name | Type | Description  | Notes
 
 
 
- **auth** | **string** |  | 
 
 ### Return type
 
@@ -498,7 +484,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-No authorization required
+[AuthHeader](../README.md#AuthHeader)
 
 ### HTTP request headers
 
@@ -512,7 +498,7 @@ No authorization required
 
 ## PaymentWithToken
 
-> TokenPaymentResponse PaymentWithToken(ctx).Auth(auth).TokenPaymentRequest(tokenPaymentRequest).Execute()
+> TokenPaymentResponse PaymentWithToken(ctx).TokenPaymentRequest(tokenPaymentRequest).Execute()
 
 Payment with token
 
@@ -529,12 +515,11 @@ import (
 )
 
 func main() {
-	auth := "auth_example" // string | 
 	tokenPaymentRequest := *openapiclient.NewTokenPaymentRequest(int64(123), "CardToken_example", float32(123), "TransactionParameter_example") // TokenPaymentRequest | 
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.PaymentAPI.PaymentWithToken(context.Background()).Auth(auth).TokenPaymentRequest(tokenPaymentRequest).Execute()
+	resp, r, err := apiClient.PaymentAPI.PaymentWithToken(context.Background()).TokenPaymentRequest(tokenPaymentRequest).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `PaymentAPI.PaymentWithToken``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -555,7 +540,6 @@ Other parameters are passed through a pointer to a apiPaymentWithTokenRequest st
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **auth** | **string** |  | 
  **tokenPaymentRequest** | [**TokenPaymentRequest**](TokenPaymentRequest.md) |  | 
 
 ### Return type
@@ -564,7 +548,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-No authorization required
+[AuthHeader](../README.md#AuthHeader)
 
 ### HTTP request headers
 
@@ -578,7 +562,7 @@ No authorization required
 
 ## ReversePayment
 
-> PaymentReversalResponse ReversePayment(ctx, serviceId, paymentId).Auth(auth).Execute()
+> PaymentReversalResponse ReversePayment(ctx, serviceId, paymentId).Execute()
 
 Payment reversal (cancel)
 
@@ -597,11 +581,10 @@ import (
 func main() {
 	serviceId := int64(789) // int64 | 
 	paymentId := int64(789) // int64 | 
-	auth := "auth_example" // string | 
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.PaymentAPI.ReversePayment(context.Background(), serviceId, paymentId).Auth(auth).Execute()
+	resp, r, err := apiClient.PaymentAPI.ReversePayment(context.Background(), serviceId, paymentId).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `PaymentAPI.ReversePayment``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -629,7 +612,6 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
 
- **auth** | **string** |  | 
 
 ### Return type
 
@@ -637,7 +619,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-No authorization required
+[AuthHeader](../README.md#AuthHeader)
 
 ### HTTP request headers
 
