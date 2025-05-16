@@ -5,11 +5,11 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **ClickTransId** | **int64** | Payment ID in CLICK system. | 
-**ServiceId** | **int32** | ID of the service. | 
+**ServiceId** | **int64** | ID of the service. | 
 **ClickPaydocId** | **int64** | Payment number in CLICK system. Shown in SMS to customer. | 
 **MerchantTransId** | **string** | Order ID / personal account / login in the supplier billing system. | 
-**MerchantPrepareId** | **int32** | Payment ID received during Prepare stage for confirmation. | 
-**Amount** | **float32** | Payment amount (in soums). | 
+**MerchantPrepareId** | **int64** | Payment ID received during Prepare stage for confirmation. | 
+**Amount** | **float64** | Payment amount (in soums). | 
 **Action** | **int32** | Action to perform. 1 – for Complete stage. | 
 **Error** | **int32** | Status code for completion of payment. 0 – success. Otherwise, an error code. | 
 **ErrorNote** | **string** | Description of the error code or result. | 
@@ -20,7 +20,7 @@ Name | Type | Description | Notes
 
 ### NewCompleteRequest
 
-`func NewCompleteRequest(clickTransId int64, serviceId int32, clickPaydocId int64, merchantTransId string, merchantPrepareId int32, amount float32, action int32, error_ int32, errorNote string, signTime string, signString string, ) *CompleteRequest`
+`func NewCompleteRequest(clickTransId int64, serviceId int64, clickPaydocId int64, merchantTransId string, merchantPrepareId int64, amount float64, action int32, error_ int32, errorNote string, signTime string, signString string, ) *CompleteRequest`
 
 NewCompleteRequest instantiates a new CompleteRequest object
 This constructor will assign default values to properties that have it defined,
@@ -57,20 +57,20 @@ SetClickTransId sets ClickTransId field to given value.
 
 ### GetServiceId
 
-`func (o *CompleteRequest) GetServiceId() int32`
+`func (o *CompleteRequest) GetServiceId() int64`
 
 GetServiceId returns the ServiceId field if non-nil, zero value otherwise.
 
 ### GetServiceIdOk
 
-`func (o *CompleteRequest) GetServiceIdOk() (*int32, bool)`
+`func (o *CompleteRequest) GetServiceIdOk() (*int64, bool)`
 
 GetServiceIdOk returns a tuple with the ServiceId field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetServiceId
 
-`func (o *CompleteRequest) SetServiceId(v int32)`
+`func (o *CompleteRequest) SetServiceId(v int64)`
 
 SetServiceId sets ServiceId field to given value.
 
@@ -117,40 +117,40 @@ SetMerchantTransId sets MerchantTransId field to given value.
 
 ### GetMerchantPrepareId
 
-`func (o *CompleteRequest) GetMerchantPrepareId() int32`
+`func (o *CompleteRequest) GetMerchantPrepareId() int64`
 
 GetMerchantPrepareId returns the MerchantPrepareId field if non-nil, zero value otherwise.
 
 ### GetMerchantPrepareIdOk
 
-`func (o *CompleteRequest) GetMerchantPrepareIdOk() (*int32, bool)`
+`func (o *CompleteRequest) GetMerchantPrepareIdOk() (*int64, bool)`
 
 GetMerchantPrepareIdOk returns a tuple with the MerchantPrepareId field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetMerchantPrepareId
 
-`func (o *CompleteRequest) SetMerchantPrepareId(v int32)`
+`func (o *CompleteRequest) SetMerchantPrepareId(v int64)`
 
 SetMerchantPrepareId sets MerchantPrepareId field to given value.
 
 
 ### GetAmount
 
-`func (o *CompleteRequest) GetAmount() float32`
+`func (o *CompleteRequest) GetAmount() float64`
 
 GetAmount returns the Amount field if non-nil, zero value otherwise.
 
 ### GetAmountOk
 
-`func (o *CompleteRequest) GetAmountOk() (*float32, bool)`
+`func (o *CompleteRequest) GetAmountOk() (*float64, bool)`
 
 GetAmountOk returns a tuple with the Amount field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetAmount
 
-`func (o *CompleteRequest) SetAmount(v float32)`
+`func (o *CompleteRequest) SetAmount(v float64)`
 
 SetAmount sets Amount field to given value.
 

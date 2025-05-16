@@ -5,7 +5,7 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **ServiceId** | **int64** | Service ID | 
-**Amount** | **float32** | Requested amount | 
+**Amount** | **float64** | Requested amount | 
 **PhoneNumber** | **string** | Invoice receiver | 
 **MerchantTransId** | **string** | Order ID or personal account | 
 
@@ -13,7 +13,7 @@ Name | Type | Description | Notes
 
 ### NewInvoiceRequest
 
-`func NewInvoiceRequest(serviceId int64, amount float32, phoneNumber string, merchantTransId string, ) *InvoiceRequest`
+`func NewInvoiceRequest(serviceId int64, amount float64, phoneNumber string, merchantTransId string, ) *InvoiceRequest`
 
 NewInvoiceRequest instantiates a new InvoiceRequest object
 This constructor will assign default values to properties that have it defined,
@@ -50,20 +50,20 @@ SetServiceId sets ServiceId field to given value.
 
 ### GetAmount
 
-`func (o *InvoiceRequest) GetAmount() float32`
+`func (o *InvoiceRequest) GetAmount() float64`
 
 GetAmount returns the Amount field if non-nil, zero value otherwise.
 
 ### GetAmountOk
 
-`func (o *InvoiceRequest) GetAmountOk() (*float32, bool)`
+`func (o *InvoiceRequest) GetAmountOk() (*float64, bool)`
 
 GetAmountOk returns a tuple with the Amount field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetAmount
 
-`func (o *InvoiceRequest) SetAmount(v float32)`
+`func (o *InvoiceRequest) SetAmount(v float64)`
 
 SetAmount sets Amount field to given value.
 

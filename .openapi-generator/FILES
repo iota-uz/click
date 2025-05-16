@@ -40,7 +40,6 @@ docs/PrepareRequest.md
 docs/PrepareResponse.md
 docs/TokenPaymentRequest.md
 docs/TokenPaymentResponse.md
-go.mod
 go.sum
 model_card_token_request.go
 model_card_token_response.go

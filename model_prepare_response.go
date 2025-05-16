@@ -27,7 +27,7 @@ type PrepareResponse struct {
 	// Order ID / personal account / login in the supplier billing system.
 	MerchantTransId string `form:"merchant_trans_id" json:"merchant_trans_id"` // Order ID / personal account / login in the supplier billing system.
 	// Payment ID in the supplier's billing system.
-	MerchantPrepareId int32 `form:"merchant_prepare_id" json:"merchant_prepare_id"` // Payment ID in the supplier&#39;s billing system.
+	MerchantPrepareId int64 `form:"merchant_prepare_id" json:"merchant_prepare_id"` // Payment ID in the supplier&#39;s billing system.
 	// Status code for completion of payment. 0 – success. Otherwise, an error code.
 	Error int32 `form:"error" json:"error"` // Status code for completion of payment. 0 – success. Otherwise, an error code.
 	// Description of the error code or result.
@@ -40,7 +40,7 @@ type _PrepareResponse PrepareResponse
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewPrepareResponse(clickTransId int64, merchantTransId string, merchantPrepareId int32, error_ int32, errorNote string) *PrepareResponse {
+func NewPrepareResponse(clickTransId int64, merchantTransId string, merchantPrepareId int64, error_ int32, errorNote string) *PrepareResponse {
 	this := PrepareResponse{}
 	this.ClickTransId = clickTransId
 	this.MerchantTransId = merchantTransId
@@ -107,9 +107,9 @@ func (o *PrepareResponse) SetMerchantTransId(v string) {
 }
 
 // GetMerchantPrepareId returns the MerchantPrepareId field value
-func (o *PrepareResponse) GetMerchantPrepareId() int32 {
+func (o *PrepareResponse) GetMerchantPrepareId() int64 {
 	if o == nil {
-		var ret int32
+		var ret int64
 		return ret
 	}
 
@@ -118,7 +118,7 @@ func (o *PrepareResponse) GetMerchantPrepareId() int32 {
 
 // GetMerchantPrepareIdOk returns a tuple with the MerchantPrepareId field value
 // and a boolean to check if the value has been set.
-func (o *PrepareResponse) GetMerchantPrepareIdOk() (*int32, bool) {
+func (o *PrepareResponse) GetMerchantPrepareIdOk() (*int64, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -126,7 +126,7 @@ func (o *PrepareResponse) GetMerchantPrepareIdOk() (*int32, bool) {
 }
 
 // SetMerchantPrepareId sets field value
-func (o *PrepareResponse) SetMerchantPrepareId(v int32) {
+func (o *PrepareResponse) SetMerchantPrepareId(v int64) {
 	o.MerchantPrepareId = v
 }
 

@@ -27,7 +27,7 @@ type ClickPassPaymentRequest struct {
 	// QR code contents
 	OtpData string `form:"otp_data" json:"otp_data"` // QR code contents
 	// Payment amount
-	Amount float32 `form:"amount" json:"amount"` // Payment amount
+	Amount float64 `form:"amount" json:"amount"` // Payment amount
 	// Cashbox identifier
 	CashboxCode *string `form:"cashbox_code" json:"cashbox_code,omitempty"` // Cashbox identifier
 	// Merchant transaction ID
@@ -40,7 +40,7 @@ type _ClickPassPaymentRequest ClickPassPaymentRequest
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewClickPassPaymentRequest(serviceId int64, otpData string, amount float32) *ClickPassPaymentRequest {
+func NewClickPassPaymentRequest(serviceId int64, otpData string, amount float64) *ClickPassPaymentRequest {
 	this := ClickPassPaymentRequest{}
 	this.ServiceId = serviceId
 	this.OtpData = otpData
@@ -105,9 +105,9 @@ func (o *ClickPassPaymentRequest) SetOtpData(v string) {
 }
 
 // GetAmount returns the Amount field value
-func (o *ClickPassPaymentRequest) GetAmount() float32 {
+func (o *ClickPassPaymentRequest) GetAmount() float64 {
 	if o == nil {
-		var ret float32
+		var ret float64
 		return ret
 	}
 
@@ -116,7 +116,7 @@ func (o *ClickPassPaymentRequest) GetAmount() float32 {
 
 // GetAmountOk returns a tuple with the Amount field value
 // and a boolean to check if the value has been set.
-func (o *ClickPassPaymentRequest) GetAmountOk() (*float32, bool) {
+func (o *ClickPassPaymentRequest) GetAmountOk() (*float64, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -124,7 +124,7 @@ func (o *ClickPassPaymentRequest) GetAmountOk() (*float32, bool) {
 }
 
 // SetAmount sets field value
-func (o *ClickPassPaymentRequest) SetAmount(v float32) {
+func (o *ClickPassPaymentRequest) SetAmount(v float64) {
 	o.Amount = v
 }
 

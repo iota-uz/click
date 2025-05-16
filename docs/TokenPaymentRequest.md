@@ -6,14 +6,14 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **ServiceId** | **int64** | Service ID | 
 **CardToken** | **string** | Card token | 
-**Amount** | **float32** | Payment amount | 
+**Amount** | **float64** | Payment amount | 
 **TransactionParameter** | **string** | Merchant transaction ID | 
 
 ## Methods
 
 ### NewTokenPaymentRequest
 
-`func NewTokenPaymentRequest(serviceId int64, cardToken string, amount float32, transactionParameter string, ) *TokenPaymentRequest`
+`func NewTokenPaymentRequest(serviceId int64, cardToken string, amount float64, transactionParameter string, ) *TokenPaymentRequest`
 
 NewTokenPaymentRequest instantiates a new TokenPaymentRequest object
 This constructor will assign default values to properties that have it defined,
@@ -70,20 +70,20 @@ SetCardToken sets CardToken field to given value.
 
 ### GetAmount
 
-`func (o *TokenPaymentRequest) GetAmount() float32`
+`func (o *TokenPaymentRequest) GetAmount() float64`
 
 GetAmount returns the Amount field if non-nil, zero value otherwise.
 
 ### GetAmountOk
 
-`func (o *TokenPaymentRequest) GetAmountOk() (*float32, bool)`
+`func (o *TokenPaymentRequest) GetAmountOk() (*float64, bool)`
 
 GetAmountOk returns a tuple with the Amount field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetAmount
 
-`func (o *TokenPaymentRequest) SetAmount(v float32)`
+`func (o *TokenPaymentRequest) SetAmount(v float64)`
 
 SetAmount sets Amount field to given value.
 

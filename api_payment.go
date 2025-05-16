@@ -20,16 +20,15 @@ import (
 	"strings"
 )
 
-
 type PaymentAPI interface {
 
 	/*
-	CheckPaymentStatus Payment status check
+		CheckPaymentStatus Payment status check
 
-	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@param serviceId
-	@param paymentId
-	@return PaymentAPICheckPaymentStatusRequest
+		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+		@param serviceId
+		@param paymentId
+		@return PaymentAPICheckPaymentStatusRequest
 	*/
 	CheckPaymentStatus(ctx context.Context, serviceId int64, paymentId int64) PaymentAPICheckPaymentStatusRequest
 
@@ -38,12 +37,12 @@ type PaymentAPI interface {
 	CheckPaymentStatusExecute(r PaymentAPICheckPaymentStatusRequest) (*PaymentStatusResponse, *http.Response, error)
 
 	/*
-	CheckPaymentStatusByMTI Payment status check by merchant_trans_id
+		CheckPaymentStatusByMTI Payment status check by merchant_trans_id
 
-	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@param serviceId
-	@param merchantTransId
-	@return PaymentAPICheckPaymentStatusByMTIRequest
+		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+		@param serviceId
+		@param merchantTransId
+		@return PaymentAPICheckPaymentStatusByMTIRequest
 	*/
 	CheckPaymentStatusByMTI(ctx context.Context, serviceId int64, merchantTransId string) PaymentAPICheckPaymentStatusByMTIRequest
 
@@ -52,10 +51,10 @@ type PaymentAPI interface {
 	CheckPaymentStatusByMTIExecute(r PaymentAPICheckPaymentStatusByMTIRequest) (*PaymentStatusByMTIResponse, *http.Response, error)
 
 	/*
-	ConfirmPayment Payment confirmation
+		ConfirmPayment Payment confirmation
 
-	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@return PaymentAPIConfirmPaymentRequest
+		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+		@return PaymentAPIConfirmPaymentRequest
 	*/
 	ConfirmPayment(ctx context.Context) PaymentAPIConfirmPaymentRequest
 
@@ -64,10 +63,10 @@ type PaymentAPI interface {
 	ConfirmPaymentExecute(r PaymentAPIConfirmPaymentRequest) (*PaymentConfirmationResponse, *http.Response, error)
 
 	/*
-	CreatePaymentWithClickPass Payment with CLICK Pass
+		CreatePaymentWithClickPass Payment with CLICK Pass
 
-	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@return PaymentAPICreatePaymentWithClickPassRequest
+		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+		@return PaymentAPICreatePaymentWithClickPassRequest
 	*/
 	CreatePaymentWithClickPass(ctx context.Context) PaymentAPICreatePaymentWithClickPassRequest
 
@@ -76,11 +75,11 @@ type PaymentAPI interface {
 	CreatePaymentWithClickPassExecute(r PaymentAPICreatePaymentWithClickPassRequest) (*ClickPassPaymentResponse, *http.Response, error)
 
 	/*
-	DisableConfirmationMode Disable confirmation mode
+		DisableConfirmationMode Disable confirmation mode
 
-	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@param serviceId
-	@return PaymentAPIDisableConfirmationModeRequest
+		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+		@param serviceId
+		@return PaymentAPIDisableConfirmationModeRequest
 	*/
 	DisableConfirmationMode(ctx context.Context, serviceId int64) PaymentAPIDisableConfirmationModeRequest
 
@@ -89,11 +88,11 @@ type PaymentAPI interface {
 	DisableConfirmationModeExecute(r PaymentAPIDisableConfirmationModeRequest) (*ConfirmationModeResponse, *http.Response, error)
 
 	/*
-	EnableConfirmationMode Enable confirmation mode
+		EnableConfirmationMode Enable confirmation mode
 
-	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@param serviceId
-	@return PaymentAPIEnableConfirmationModeRequest
+		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+		@param serviceId
+		@return PaymentAPIEnableConfirmationModeRequest
 	*/
 	EnableConfirmationMode(ctx context.Context, serviceId int64) PaymentAPIEnableConfirmationModeRequest
 
@@ -102,25 +101,25 @@ type PaymentAPI interface {
 	EnableConfirmationModeExecute(r PaymentAPIEnableConfirmationModeRequest) (*ConfirmationModeResponse, *http.Response, error)
 
 	/*
-	PartialRefund Partial refund
+		PartialRefund Partial refund
 
-	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@param serviceId
-	@param paymentId
-	@param amount
-	@return PaymentAPIPartialRefundRequest
+		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+		@param serviceId
+		@param paymentId
+		@param amount
+		@return PaymentAPIPartialRefundRequest
 	*/
-	PartialRefund(ctx context.Context, serviceId int64, paymentId int64, amount float32) PaymentAPIPartialRefundRequest
+	PartialRefund(ctx context.Context, serviceId int64, paymentId int64, amount float64) PaymentAPIPartialRefundRequest
 
 	// PartialRefundExecute executes the request
 	//  @return PartialRefundResponse
 	PartialRefundExecute(r PaymentAPIPartialRefundRequest) (*PartialRefundResponse, *http.Response, error)
 
 	/*
-	PaymentWithToken Payment with token
+		PaymentWithToken Payment with token
 
-	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@return PaymentAPIPaymentWithTokenRequest
+		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+		@return PaymentAPIPaymentWithTokenRequest
 	*/
 	PaymentWithToken(ctx context.Context) PaymentAPIPaymentWithTokenRequest
 
@@ -129,12 +128,12 @@ type PaymentAPI interface {
 	PaymentWithTokenExecute(r PaymentAPIPaymentWithTokenRequest) (*TokenPaymentResponse, *http.Response, error)
 
 	/*
-	ReversePayment Payment reversal (cancel)
+		ReversePayment Payment reversal (cancel)
 
-	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@param serviceId
-	@param paymentId
-	@return PaymentAPIReversePaymentRequest
+		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+		@param serviceId
+		@param paymentId
+		@return PaymentAPIReversePaymentRequest
 	*/
 	ReversePayment(ctx context.Context, serviceId int64, paymentId int64) PaymentAPIReversePaymentRequest
 
@@ -147,10 +146,10 @@ type PaymentAPI interface {
 type PaymentAPIService service
 
 type PaymentAPICheckPaymentStatusRequest struct {
-	ctx context.Context
+	ctx        context.Context
 	ApiService PaymentAPI
-	serviceId int64
-	paymentId int64
+	serviceId  int64
+	paymentId  int64
 }
 
 func (r PaymentAPICheckPaymentStatusRequest) Execute() (*PaymentStatusResponse, *http.Response, error) {
@@ -160,28 +159,29 @@ func (r PaymentAPICheckPaymentStatusRequest) Execute() (*PaymentStatusResponse, 
 /*
 CheckPaymentStatus Payment status check
 
- @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param serviceId
- @param paymentId
- @return PaymentAPICheckPaymentStatusRequest
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param serviceId
+	@param paymentId
+	@return PaymentAPICheckPaymentStatusRequest
 */
 func (a *PaymentAPIService) CheckPaymentStatus(ctx context.Context, serviceId int64, paymentId int64) PaymentAPICheckPaymentStatusRequest {
 	return PaymentAPICheckPaymentStatusRequest{
 		ApiService: a,
-		ctx: ctx,
-		serviceId: serviceId,
-		paymentId: paymentId,
+		ctx:        ctx,
+		serviceId:  serviceId,
+		paymentId:  paymentId,
 	}
 }
 
 // Execute executes the request
-//  @return PaymentStatusResponse
+//
+//	@return PaymentStatusResponse
 func (a *PaymentAPIService) CheckPaymentStatusExecute(r PaymentAPICheckPaymentStatusRequest) (*PaymentStatusResponse, *http.Response, error) {
 	var (
-		localVarHTTPMethod   = http.MethodGet
-		localVarPostBody     interface{}
-		formFiles            []formFile
-		localVarReturnValue  *PaymentStatusResponse
+		localVarHTTPMethod  = http.MethodGet
+		localVarPostBody    interface{}
+		formFiles           []formFile
+		localVarReturnValue *PaymentStatusResponse
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "PaymentAPIService.CheckPaymentStatus")
@@ -266,9 +266,9 @@ func (a *PaymentAPIService) CheckPaymentStatusExecute(r PaymentAPICheckPaymentSt
 }
 
 type PaymentAPICheckPaymentStatusByMTIRequest struct {
-	ctx context.Context
-	ApiService PaymentAPI
-	serviceId int64
+	ctx             context.Context
+	ApiService      PaymentAPI
+	serviceId       int64
 	merchantTransId string
 }
 
@@ -279,28 +279,29 @@ func (r PaymentAPICheckPaymentStatusByMTIRequest) Execute() (*PaymentStatusByMTI
 /*
 CheckPaymentStatusByMTI Payment status check by merchant_trans_id
 
- @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param serviceId
- @param merchantTransId
- @return PaymentAPICheckPaymentStatusByMTIRequest
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param serviceId
+	@param merchantTransId
+	@return PaymentAPICheckPaymentStatusByMTIRequest
 */
 func (a *PaymentAPIService) CheckPaymentStatusByMTI(ctx context.Context, serviceId int64, merchantTransId string) PaymentAPICheckPaymentStatusByMTIRequest {
 	return PaymentAPICheckPaymentStatusByMTIRequest{
-		ApiService: a,
-		ctx: ctx,
-		serviceId: serviceId,
+		ApiService:      a,
+		ctx:             ctx,
+		serviceId:       serviceId,
 		merchantTransId: merchantTransId,
 	}
 }
 
 // Execute executes the request
-//  @return PaymentStatusByMTIResponse
+//
+//	@return PaymentStatusByMTIResponse
 func (a *PaymentAPIService) CheckPaymentStatusByMTIExecute(r PaymentAPICheckPaymentStatusByMTIRequest) (*PaymentStatusByMTIResponse, *http.Response, error) {
 	var (
-		localVarHTTPMethod   = http.MethodGet
-		localVarPostBody     interface{}
-		formFiles            []formFile
-		localVarReturnValue  *PaymentStatusByMTIResponse
+		localVarHTTPMethod  = http.MethodGet
+		localVarPostBody    interface{}
+		formFiles           []formFile
+		localVarReturnValue *PaymentStatusByMTIResponse
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "PaymentAPIService.CheckPaymentStatusByMTI")
@@ -385,8 +386,8 @@ func (a *PaymentAPIService) CheckPaymentStatusByMTIExecute(r PaymentAPICheckPaym
 }
 
 type PaymentAPIConfirmPaymentRequest struct {
-	ctx context.Context
-	ApiService PaymentAPI
+	ctx                        context.Context
+	ApiService                 PaymentAPI
 	paymentConfirmationRequest *PaymentConfirmationRequest
 }
 
@@ -402,24 +403,25 @@ func (r PaymentAPIConfirmPaymentRequest) Execute() (*PaymentConfirmationResponse
 /*
 ConfirmPayment Payment confirmation
 
- @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @return PaymentAPIConfirmPaymentRequest
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@return PaymentAPIConfirmPaymentRequest
 */
 func (a *PaymentAPIService) ConfirmPayment(ctx context.Context) PaymentAPIConfirmPaymentRequest {
 	return PaymentAPIConfirmPaymentRequest{
 		ApiService: a,
-		ctx: ctx,
+		ctx:        ctx,
 	}
 }
 
 // Execute executes the request
-//  @return PaymentConfirmationResponse
+//
+//	@return PaymentConfirmationResponse
 func (a *PaymentAPIService) ConfirmPaymentExecute(r PaymentAPIConfirmPaymentRequest) (*PaymentConfirmationResponse, *http.Response, error) {
 	var (
-		localVarHTTPMethod   = http.MethodPost
-		localVarPostBody     interface{}
-		formFiles            []formFile
-		localVarReturnValue  *PaymentConfirmationResponse
+		localVarHTTPMethod  = http.MethodPost
+		localVarPostBody    interface{}
+		formFiles           []formFile
+		localVarReturnValue *PaymentConfirmationResponse
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "PaymentAPIService.ConfirmPayment")
@@ -507,8 +509,8 @@ func (a *PaymentAPIService) ConfirmPaymentExecute(r PaymentAPIConfirmPaymentRequ
 }
 
 type PaymentAPICreatePaymentWithClickPassRequest struct {
-	ctx context.Context
-	ApiService PaymentAPI
+	ctx                     context.Context
+	ApiService              PaymentAPI
 	clickPassPaymentRequest *ClickPassPaymentRequest
 }
 
@@ -524,24 +526,25 @@ func (r PaymentAPICreatePaymentWithClickPassRequest) Execute() (*ClickPassPaymen
 /*
 CreatePaymentWithClickPass Payment with CLICK Pass
 
- @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @return PaymentAPICreatePaymentWithClickPassRequest
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@return PaymentAPICreatePaymentWithClickPassRequest
 */
 func (a *PaymentAPIService) CreatePaymentWithClickPass(ctx context.Context) PaymentAPICreatePaymentWithClickPassRequest {
 	return PaymentAPICreatePaymentWithClickPassRequest{
 		ApiService: a,
-		ctx: ctx,
+		ctx:        ctx,
 	}
 }
 
 // Execute executes the request
-//  @return ClickPassPaymentResponse
+//
+//	@return ClickPassPaymentResponse
 func (a *PaymentAPIService) CreatePaymentWithClickPassExecute(r PaymentAPICreatePaymentWithClickPassRequest) (*ClickPassPaymentResponse, *http.Response, error) {
 	var (
-		localVarHTTPMethod   = http.MethodPost
-		localVarPostBody     interface{}
-		formFiles            []formFile
-		localVarReturnValue  *ClickPassPaymentResponse
+		localVarHTTPMethod  = http.MethodPost
+		localVarPostBody    interface{}
+		formFiles           []formFile
+		localVarReturnValue *ClickPassPaymentResponse
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "PaymentAPIService.CreatePaymentWithClickPass")
@@ -629,9 +632,9 @@ func (a *PaymentAPIService) CreatePaymentWithClickPassExecute(r PaymentAPICreate
 }
 
 type PaymentAPIDisableConfirmationModeRequest struct {
-	ctx context.Context
+	ctx        context.Context
 	ApiService PaymentAPI
-	serviceId int64
+	serviceId  int64
 }
 
 func (r PaymentAPIDisableConfirmationModeRequest) Execute() (*ConfirmationModeResponse, *http.Response, error) {
@@ -641,26 +644,27 @@ func (r PaymentAPIDisableConfirmationModeRequest) Execute() (*ConfirmationModeRe
 /*
 DisableConfirmationMode Disable confirmation mode
 
- @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param serviceId
- @return PaymentAPIDisableConfirmationModeRequest
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param serviceId
+	@return PaymentAPIDisableConfirmationModeRequest
 */
 func (a *PaymentAPIService) DisableConfirmationMode(ctx context.Context, serviceId int64) PaymentAPIDisableConfirmationModeRequest {
 	return PaymentAPIDisableConfirmationModeRequest{
 		ApiService: a,
-		ctx: ctx,
-		serviceId: serviceId,
+		ctx:        ctx,
+		serviceId:  serviceId,
 	}
 }
 
 // Execute executes the request
-//  @return ConfirmationModeResponse
+//
+//	@return ConfirmationModeResponse
 func (a *PaymentAPIService) DisableConfirmationModeExecute(r PaymentAPIDisableConfirmationModeRequest) (*ConfirmationModeResponse, *http.Response, error) {
 	var (
-		localVarHTTPMethod   = http.MethodDelete
-		localVarPostBody     interface{}
-		formFiles            []formFile
-		localVarReturnValue  *ConfirmationModeResponse
+		localVarHTTPMethod  = http.MethodDelete
+		localVarPostBody    interface{}
+		formFiles           []formFile
+		localVarReturnValue *ConfirmationModeResponse
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "PaymentAPIService.DisableConfirmationMode")
@@ -744,9 +748,9 @@ func (a *PaymentAPIService) DisableConfirmationModeExecute(r PaymentAPIDisableCo
 }
 
 type PaymentAPIEnableConfirmationModeRequest struct {
-	ctx context.Context
+	ctx        context.Context
 	ApiService PaymentAPI
-	serviceId int64
+	serviceId  int64
 }
 
 func (r PaymentAPIEnableConfirmationModeRequest) Execute() (*ConfirmationModeResponse, *http.Response, error) {
@@ -756,26 +760,27 @@ func (r PaymentAPIEnableConfirmationModeRequest) Execute() (*ConfirmationModeRes
 /*
 EnableConfirmationMode Enable confirmation mode
 
- @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param serviceId
- @return PaymentAPIEnableConfirmationModeRequest
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param serviceId
+	@return PaymentAPIEnableConfirmationModeRequest
 */
 func (a *PaymentAPIService) EnableConfirmationMode(ctx context.Context, serviceId int64) PaymentAPIEnableConfirmationModeRequest {
 	return PaymentAPIEnableConfirmationModeRequest{
 		ApiService: a,
-		ctx: ctx,
-		serviceId: serviceId,
+		ctx:        ctx,
+		serviceId:  serviceId,
 	}
 }
 
 // Execute executes the request
-//  @return ConfirmationModeResponse
+//
+//	@return ConfirmationModeResponse
 func (a *PaymentAPIService) EnableConfirmationModeExecute(r PaymentAPIEnableConfirmationModeRequest) (*ConfirmationModeResponse, *http.Response, error) {
 	var (
-		localVarHTTPMethod   = http.MethodPut
-		localVarPostBody     interface{}
-		formFiles            []formFile
-		localVarReturnValue  *ConfirmationModeResponse
+		localVarHTTPMethod  = http.MethodPut
+		localVarPostBody    interface{}
+		formFiles           []formFile
+		localVarReturnValue *ConfirmationModeResponse
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "PaymentAPIService.EnableConfirmationMode")
@@ -859,11 +864,11 @@ func (a *PaymentAPIService) EnableConfirmationModeExecute(r PaymentAPIEnableConf
 }
 
 type PaymentAPIPartialRefundRequest struct {
-	ctx context.Context
+	ctx        context.Context
 	ApiService PaymentAPI
-	serviceId int64
-	paymentId int64
-	amount float32
+	serviceId  int64
+	paymentId  int64
+	amount     float64
 }
 
 func (r PaymentAPIPartialRefundRequest) Execute() (*PartialRefundResponse, *http.Response, error) {
@@ -873,30 +878,31 @@ func (r PaymentAPIPartialRefundRequest) Execute() (*PartialRefundResponse, *http
 /*
 PartialRefund Partial refund
 
- @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param serviceId
- @param paymentId
- @param amount
- @return PaymentAPIPartialRefundRequest
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param serviceId
+	@param paymentId
+	@param amount
+	@return PaymentAPIPartialRefundRequest
 */
-func (a *PaymentAPIService) PartialRefund(ctx context.Context, serviceId int64, paymentId int64, amount float32) PaymentAPIPartialRefundRequest {
+func (a *PaymentAPIService) PartialRefund(ctx context.Context, serviceId int64, paymentId int64, amount float64) PaymentAPIPartialRefundRequest {
 	return PaymentAPIPartialRefundRequest{
 		ApiService: a,
-		ctx: ctx,
-		serviceId: serviceId,
-		paymentId: paymentId,
-		amount: amount,
+		ctx:        ctx,
+		serviceId:  serviceId,
+		paymentId:  paymentId,
+		amount:     amount,
 	}
 }
 
 // Execute executes the request
-//  @return PartialRefundResponse
+//
+//	@return PartialRefundResponse
 func (a *PaymentAPIService) PartialRefundExecute(r PaymentAPIPartialRefundRequest) (*PartialRefundResponse, *http.Response, error) {
 	var (
-		localVarHTTPMethod   = http.MethodDelete
-		localVarPostBody     interface{}
-		formFiles            []formFile
-		localVarReturnValue  *PartialRefundResponse
+		localVarHTTPMethod  = http.MethodDelete
+		localVarPostBody    interface{}
+		formFiles           []formFile
+		localVarReturnValue *PartialRefundResponse
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "PaymentAPIService.PartialRefund")
@@ -982,8 +988,8 @@ func (a *PaymentAPIService) PartialRefundExecute(r PaymentAPIPartialRefundReques
 }
 
 type PaymentAPIPaymentWithTokenRequest struct {
-	ctx context.Context
-	ApiService PaymentAPI
+	ctx                 context.Context
+	ApiService          PaymentAPI
 	tokenPaymentRequest *TokenPaymentRequest
 }
 
@@ -999,24 +1005,25 @@ func (r PaymentAPIPaymentWithTokenRequest) Execute() (*TokenPaymentResponse, *ht
 /*
 PaymentWithToken Payment with token
 
- @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @return PaymentAPIPaymentWithTokenRequest
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@return PaymentAPIPaymentWithTokenRequest
 */
 func (a *PaymentAPIService) PaymentWithToken(ctx context.Context) PaymentAPIPaymentWithTokenRequest {
 	return PaymentAPIPaymentWithTokenRequest{
 		ApiService: a,
-		ctx: ctx,
+		ctx:        ctx,
 	}
 }
 
 // Execute executes the request
-//  @return TokenPaymentResponse
+//
+//	@return TokenPaymentResponse
 func (a *PaymentAPIService) PaymentWithTokenExecute(r PaymentAPIPaymentWithTokenRequest) (*TokenPaymentResponse, *http.Response, error) {
 	var (
-		localVarHTTPMethod   = http.MethodPost
-		localVarPostBody     interface{}
-		formFiles            []formFile
-		localVarReturnValue  *TokenPaymentResponse
+		localVarHTTPMethod  = http.MethodPost
+		localVarPostBody    interface{}
+		formFiles           []formFile
+		localVarReturnValue *TokenPaymentResponse
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "PaymentAPIService.PaymentWithToken")
@@ -1104,10 +1111,10 @@ func (a *PaymentAPIService) PaymentWithTokenExecute(r PaymentAPIPaymentWithToken
 }
 
 type PaymentAPIReversePaymentRequest struct {
-	ctx context.Context
+	ctx        context.Context
 	ApiService PaymentAPI
-	serviceId int64
-	paymentId int64
+	serviceId  int64
+	paymentId  int64
 }
 
 func (r PaymentAPIReversePaymentRequest) Execute() (*PaymentReversalResponse, *http.Response, error) {
@@ -1117,28 +1124,29 @@ func (r PaymentAPIReversePaymentRequest) Execute() (*PaymentReversalResponse, *h
 /*
 ReversePayment Payment reversal (cancel)
 
- @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param serviceId
- @param paymentId
- @return PaymentAPIReversePaymentRequest
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param serviceId
+	@param paymentId
+	@return PaymentAPIReversePaymentRequest
 */
 func (a *PaymentAPIService) ReversePayment(ctx context.Context, serviceId int64, paymentId int64) PaymentAPIReversePaymentRequest {
 	return PaymentAPIReversePaymentRequest{
 		ApiService: a,
-		ctx: ctx,
-		serviceId: serviceId,
-		paymentId: paymentId,
+		ctx:        ctx,
+		serviceId:  serviceId,
+		paymentId:  paymentId,
 	}
 }
 
 // Execute executes the request
-//  @return PaymentReversalResponse
+//
+//	@return PaymentReversalResponse
 func (a *PaymentAPIService) ReversePaymentExecute(r PaymentAPIReversePaymentRequest) (*PaymentReversalResponse, *http.Response, error) {
 	var (
-		localVarHTTPMethod   = http.MethodDelete
-		localVarPostBody     interface{}
-		formFiles            []formFile
-		localVarReturnValue  *PaymentReversalResponse
+		localVarHTTPMethod  = http.MethodDelete
+		localVarPostBody    interface{}
+		formFiles           []formFile
+		localVarReturnValue *PaymentReversalResponse
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "PaymentAPIService.ReversePayment")

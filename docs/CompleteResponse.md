@@ -6,7 +6,7 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **ClickTransId** | **int64** | Payment ID in CLICK system. | 
 **MerchantTransId** | **string** | Order ID / personal account / login in the supplier billing system. | 
-**MerchantConfirmId** | **int32** | Transaction ID to complete the payment in the billing system. May be 0 if not applicable. | 
+**MerchantConfirmId** | **int64** | Transaction ID to complete the payment in the billing system. May be 0 if not applicable. | 
 **Error** | **int32** | Status code for completion of payment. 0 – success. Otherwise, an error code. | 
 **ErrorNote** | **string** | Description of the error code or result. | 
 
@@ -14,7 +14,7 @@ Name | Type | Description | Notes
 
 ### NewCompleteResponse
 
-`func NewCompleteResponse(clickTransId int64, merchantTransId string, merchantConfirmId int32, error_ int32, errorNote string, ) *CompleteResponse`
+`func NewCompleteResponse(clickTransId int64, merchantTransId string, merchantConfirmId int64, error_ int32, errorNote string, ) *CompleteResponse`
 
 NewCompleteResponse instantiates a new CompleteResponse object
 This constructor will assign default values to properties that have it defined,
@@ -71,20 +71,20 @@ SetMerchantTransId sets MerchantTransId field to given value.
 
 ### GetMerchantConfirmId
 
-`func (o *CompleteResponse) GetMerchantConfirmId() int32`
+`func (o *CompleteResponse) GetMerchantConfirmId() int64`
 
 GetMerchantConfirmId returns the MerchantConfirmId field if non-nil, zero value otherwise.
 
 ### GetMerchantConfirmIdOk
 
-`func (o *CompleteResponse) GetMerchantConfirmIdOk() (*int32, bool)`
+`func (o *CompleteResponse) GetMerchantConfirmIdOk() (*int64, bool)`
 
 GetMerchantConfirmIdOk returns a tuple with the MerchantConfirmId field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetMerchantConfirmId
 
-`func (o *CompleteResponse) SetMerchantConfirmId(v int32)`
+`func (o *CompleteResponse) SetMerchantConfirmId(v int64)`
 
 SetMerchantConfirmId sets MerchantConfirmId field to given value.
 

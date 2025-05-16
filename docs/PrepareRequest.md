@@ -5,10 +5,10 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **ClickTransId** | **int64** | ID of transaction (iteration) in CLICK system, i.e. attempt to make a payment. | 
-**ServiceId** | **int32** | ID of the service. | 
+**ServiceId** | **int64** | ID of the service. | 
 **ClickPaydocId** | **int64** | Payment ID in CLICK system. Displayed to the customer in SMS when paying. | 
 **MerchantTransId** | **string** | Order ID / personal account / login in the supplier billing system. | 
-**Amount** | **float32** | Payment amount (in soums). | 
+**Amount** | **float64** | Payment amount (in soums). | 
 **Action** | **int32** | Action to perform. 0 – for Prepare stage. | 
 **Error** | **int32** | Status code for completion of payment. 0 – success. Otherwise, an error code. | 
 **ErrorNote** | **string** | Description of the error code or result. | 
@@ -19,7 +19,7 @@ Name | Type | Description | Notes
 
 ### NewPrepareRequest
 
-`func NewPrepareRequest(clickTransId int64, serviceId int32, clickPaydocId int64, merchantTransId string, amount float32, action int32, error_ int32, errorNote string, signTime string, signString string, ) *PrepareRequest`
+`func NewPrepareRequest(clickTransId int64, serviceId int64, clickPaydocId int64, merchantTransId string, amount float64, action int32, error_ int32, errorNote string, signTime string, signString string, ) *PrepareRequest`
 
 NewPrepareRequest instantiates a new PrepareRequest object
 This constructor will assign default values to properties that have it defined,
@@ -56,20 +56,20 @@ SetClickTransId sets ClickTransId field to given value.
 
 ### GetServiceId
 
-`func (o *PrepareRequest) GetServiceId() int32`
+`func (o *PrepareRequest) GetServiceId() int64`
 
 GetServiceId returns the ServiceId field if non-nil, zero value otherwise.
 
 ### GetServiceIdOk
 
-`func (o *PrepareRequest) GetServiceIdOk() (*int32, bool)`
+`func (o *PrepareRequest) GetServiceIdOk() (*int64, bool)`
 
 GetServiceIdOk returns a tuple with the ServiceId field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetServiceId
 
-`func (o *PrepareRequest) SetServiceId(v int32)`
+`func (o *PrepareRequest) SetServiceId(v int64)`
 
 SetServiceId sets ServiceId field to given value.
 
@@ -116,20 +116,20 @@ SetMerchantTransId sets MerchantTransId field to given value.
 
 ### GetAmount
 
-`func (o *PrepareRequest) GetAmount() float32`
+`func (o *PrepareRequest) GetAmount() float64`
 
 GetAmount returns the Amount field if non-nil, zero value otherwise.
 
 ### GetAmountOk
 
-`func (o *PrepareRequest) GetAmountOk() (*float32, bool)`
+`func (o *PrepareRequest) GetAmountOk() (*float64, bool)`
 
 GetAmountOk returns a tuple with the Amount field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetAmount
 
-`func (o *PrepareRequest) SetAmount(v float32)`
+`func (o *PrepareRequest) SetAmount(v float64)`
 
 SetAmount sets Amount field to given value.
 

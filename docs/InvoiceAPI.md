@@ -99,7 +99,7 @@ import (
 )
 
 func main() {
-	invoiceRequest := *openapiclient.NewInvoiceRequest(int64(123), float32(123), "PhoneNumber_example", "MerchantTransId_example") // InvoiceRequest | 
+	invoiceRequest := *openapiclient.NewInvoiceRequest(int64(123), float64(123), "PhoneNumber_example", "MerchantTransId_example") // InvoiceRequest | 
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)

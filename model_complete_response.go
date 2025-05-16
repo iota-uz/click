@@ -27,7 +27,7 @@ type CompleteResponse struct {
 	// Order ID / personal account / login in the supplier billing system.
 	MerchantTransId string `form:"merchant_trans_id" json:"merchant_trans_id"` // Order ID / personal account / login in the supplier billing system.
 	// Transaction ID to complete the payment in the billing system. May be 0 if not applicable.
-	MerchantConfirmId int32 `form:"merchant_confirm_id" json:"merchant_confirm_id"` // Transaction ID to complete the payment in the billing system. May be 0 if not applicable.
+	MerchantConfirmId int64 `form:"merchant_confirm_id" json:"merchant_confirm_id"` // Transaction ID to complete the payment in the billing system. May be 0 if not applicable.
 	// Status code for completion of payment. 0 – success. Otherwise, an error code.
 	Error int32 `form:"error" json:"error"` // Status code for completion of payment. 0 – success. Otherwise, an error code.
 	// Description of the error code or result.
@@ -40,7 +40,7 @@ type _CompleteResponse CompleteResponse
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewCompleteResponse(clickTransId int64, merchantTransId string, merchantConfirmId int32, error_ int32, errorNote string) *CompleteResponse {
+func NewCompleteResponse(clickTransId int64, merchantTransId string, merchantConfirmId int64, error_ int32, errorNote string) *CompleteResponse {
 	this := CompleteResponse{}
 	this.ClickTransId = clickTransId
 	this.MerchantTransId = merchantTransId
@@ -107,9 +107,9 @@ func (o *CompleteResponse) SetMerchantTransId(v string) {
 }
 
 // GetMerchantConfirmId returns the MerchantConfirmId field value
-func (o *CompleteResponse) GetMerchantConfirmId() int32 {
+func (o *CompleteResponse) GetMerchantConfirmId() int64 {
 	if o == nil {
-		var ret int32
+		var ret int64
 		return ret
 	}
 
@@ -118,7 +118,7 @@ func (o *CompleteResponse) GetMerchantConfirmId() int32 {
 
 // GetMerchantConfirmIdOk returns a tuple with the MerchantConfirmId field value
 // and a boolean to check if the value has been set.
-func (o *CompleteResponse) GetMerchantConfirmIdOk() (*int32, bool) {
+func (o *CompleteResponse) GetMerchantConfirmIdOk() (*int64, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -126,7 +126,7 @@ func (o *CompleteResponse) GetMerchantConfirmIdOk() (*int32, bool) {
 }
 
 // SetMerchantConfirmId sets field value
-func (o *CompleteResponse) SetMerchantConfirmId(v int32) {
+func (o *CompleteResponse) SetMerchantConfirmId(v int64) {
 	o.MerchantConfirmId = v
 }
 

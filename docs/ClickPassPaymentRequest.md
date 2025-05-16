@@ -6,7 +6,7 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **ServiceId** | **int64** | Service ID | 
 **OtpData** | **string** | QR code contents | 
-**Amount** | **float32** | Payment amount | 
+**Amount** | **float64** | Payment amount | 
 **CashboxCode** | Pointer to **string** | Cashbox identifier | [optional] 
 **TransactionId** | Pointer to **string** | Merchant transaction ID | [optional] 
 
@@ -14,7 +14,7 @@ Name | Type | Description | Notes
 
 ### NewClickPassPaymentRequest
 
-`func NewClickPassPaymentRequest(serviceId int64, otpData string, amount float32, ) *ClickPassPaymentRequest`
+`func NewClickPassPaymentRequest(serviceId int64, otpData string, amount float64, ) *ClickPassPaymentRequest`
 
 NewClickPassPaymentRequest instantiates a new ClickPassPaymentRequest object
 This constructor will assign default values to properties that have it defined,
@@ -71,20 +71,20 @@ SetOtpData sets OtpData field to given value.
 
 ### GetAmount
 
-`func (o *ClickPassPaymentRequest) GetAmount() float32`
+`func (o *ClickPassPaymentRequest) GetAmount() float64`
 
 GetAmount returns the Amount field if non-nil, zero value otherwise.
 
 ### GetAmountOk
 
-`func (o *ClickPassPaymentRequest) GetAmountOk() (*float32, bool)`
+`func (o *ClickPassPaymentRequest) GetAmountOk() (*float64, bool)`
 
 GetAmountOk returns a tuple with the Amount field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetAmount
 
-`func (o *ClickPassPaymentRequest) SetAmount(v float32)`
+`func (o *ClickPassPaymentRequest) SetAmount(v float64)`
 
 SetAmount sets Amount field to given value.
 

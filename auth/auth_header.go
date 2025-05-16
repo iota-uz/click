@@ -1,15 +1,15 @@
-﻿package auth
+package auth
 
 import (
 	"context"
 	"crypto/sha1"
 	"encoding/hex"
 	"fmt"
-	"github.com/iota-uz/click/clickapi"
+	"github.com/iota-uz/click"
 	"time"
 )
 
-func GenerateAuthHeader(t time.Time, merchantUserID int32, secretKey string) string {
+func GenerateAuthHeader(t time.Time, merchantUserId int64, secretKey string) string {
 	timestamp := t.Unix()
 	data := fmt.Sprintf("%d%s", timestamp, secretKey)
 
@@ -17,11 +17,11 @@ func GenerateAuthHeader(t time.Time, merchantUserID int32, secretKey string) str
 	hash.Write([]byte(data))
 	digest := hex.EncodeToString(hash.Sum(nil))
 
-	return fmt.Sprintf("%d:%s:%d", merchantUserID, digest, timestamp)
+	return fmt.Sprintf("%d:%s:%d", merchantUserId, digest, timestamp)
 }
 
-func WithAuthContext(ctx context.Context, merchantUserID int32, secretKey string, t time.Time) context.Context {
-	authHeader := GenerateAuthHeader(t, merchantUserID, secretKey)
+func WithAuthContext(ctx context.Context, merchantUserId int64, secretKey string, t time.Time) context.Context {
+	authHeader := GenerateAuthHeader(t, merchantUserId, secretKey)
 
 	return context.WithValue(
 		ctx,

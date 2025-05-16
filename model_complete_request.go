@@ -25,15 +25,15 @@ type CompleteRequest struct {
 	// Payment ID in CLICK system.
 	ClickTransId int64 `form:"click_trans_id" json:"click_trans_id"` // Payment ID in CLICK system.
 	// ID of the service.
-	ServiceId int32 `form:"service_id" json:"service_id"` // ID of the service.
+	ServiceId int64 `form:"service_id" json:"service_id"` // ID of the service.
 	// Payment number in CLICK system. Shown in SMS to customer.
 	ClickPaydocId int64 `form:"click_paydoc_id" json:"click_paydoc_id"` // Payment number in CLICK system. Shown in SMS to customer.
 	// Order ID / personal account / login in the supplier billing system.
 	MerchantTransId string `form:"merchant_trans_id" json:"merchant_trans_id"` // Order ID / personal account / login in the supplier billing system.
 	// Payment ID received during Prepare stage for confirmation.
-	MerchantPrepareId int32 `form:"merchant_prepare_id" json:"merchant_prepare_id"` // Payment ID received during Prepare stage for confirmation.
+	MerchantPrepareId int64 `form:"merchant_prepare_id" json:"merchant_prepare_id"` // Payment ID received during Prepare stage for confirmation.
 	// Payment amount (in soums).
-	Amount float32 `form:"amount" json:"amount"` // Payment amount (in soums).
+	Amount float64 `form:"amount" json:"amount"` // Payment amount (in soums).
 	// Action to perform. 1 – for Complete stage.
 	Action int32 `form:"action" json:"action"` // Action to perform. 1 – for Complete stage.
 	// Status code for completion of payment. 0 – success. Otherwise, an error code.
@@ -52,7 +52,7 @@ type _CompleteRequest CompleteRequest
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewCompleteRequest(clickTransId int64, serviceId int32, clickPaydocId int64, merchantTransId string, merchantPrepareId int32, amount float32, action int32, error_ int32, errorNote string, signTime string, signString string) *CompleteRequest {
+func NewCompleteRequest(clickTransId int64, serviceId int64, clickPaydocId int64, merchantTransId string, merchantPrepareId int64, amount float64, action int32, error_ int32, errorNote string, signTime string, signString string) *CompleteRequest {
 	this := CompleteRequest{}
 	this.ClickTransId = clickTransId
 	this.ServiceId = serviceId
@@ -101,9 +101,9 @@ func (o *CompleteRequest) SetClickTransId(v int64) {
 }
 
 // GetServiceId returns the ServiceId field value
-func (o *CompleteRequest) GetServiceId() int32 {
+func (o *CompleteRequest) GetServiceId() int64 {
 	if o == nil {
-		var ret int32
+		var ret int64
 		return ret
 	}
 
@@ -112,7 +112,7 @@ func (o *CompleteRequest) GetServiceId() int32 {
 
 // GetServiceIdOk returns a tuple with the ServiceId field value
 // and a boolean to check if the value has been set.
-func (o *CompleteRequest) GetServiceIdOk() (*int32, bool) {
+func (o *CompleteRequest) GetServiceIdOk() (*int64, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -120,7 +120,7 @@ func (o *CompleteRequest) GetServiceIdOk() (*int32, bool) {
 }
 
 // SetServiceId sets field value
-func (o *CompleteRequest) SetServiceId(v int32) {
+func (o *CompleteRequest) SetServiceId(v int64) {
 	o.ServiceId = v
 }
 
@@ -173,9 +173,9 @@ func (o *CompleteRequest) SetMerchantTransId(v string) {
 }
 
 // GetMerchantPrepareId returns the MerchantPrepareId field value
-func (o *CompleteRequest) GetMerchantPrepareId() int32 {
+func (o *CompleteRequest) GetMerchantPrepareId() int64 {
 	if o == nil {
-		var ret int32
+		var ret int64
 		return ret
 	}
 
@@ -184,7 +184,7 @@ func (o *CompleteRequest) GetMerchantPrepareId() int32 {
 
 // GetMerchantPrepareIdOk returns a tuple with the MerchantPrepareId field value
 // and a boolean to check if the value has been set.
-func (o *CompleteRequest) GetMerchantPrepareIdOk() (*int32, bool) {
+func (o *CompleteRequest) GetMerchantPrepareIdOk() (*int64, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -192,14 +192,14 @@ func (o *CompleteRequest) GetMerchantPrepareIdOk() (*int32, bool) {
 }
 
 // SetMerchantPrepareId sets field value
-func (o *CompleteRequest) SetMerchantPrepareId(v int32) {
+func (o *CompleteRequest) SetMerchantPrepareId(v int64) {
 	o.MerchantPrepareId = v
 }
 
 // GetAmount returns the Amount field value
-func (o *CompleteRequest) GetAmount() float32 {
+func (o *CompleteRequest) GetAmount() float64 {
 	if o == nil {
-		var ret float32
+		var ret float64
 		return ret
 	}
 
@@ -208,7 +208,7 @@ func (o *CompleteRequest) GetAmount() float32 {
 
 // GetAmountOk returns a tuple with the Amount field value
 // and a boolean to check if the value has been set.
-func (o *CompleteRequest) GetAmountOk() (*float32, bool) {
+func (o *CompleteRequest) GetAmountOk() (*float64, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -216,7 +216,7 @@ func (o *CompleteRequest) GetAmountOk() (*float32, bool) {
 }
 
 // SetAmount sets field value
-func (o *CompleteRequest) SetAmount(v float32) {
+func (o *CompleteRequest) SetAmount(v float64) {
 	o.Amount = v
 }
 

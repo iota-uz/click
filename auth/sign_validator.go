@@ -11,20 +11,20 @@ import (
 // Formula: md5(click_trans_id + service_id + SECRET_KEY + merchant_trans_id + amount + action + sign_time)
 func ValidatePrepareSignString(
 	actualSign string,
-	clickTransID int64,
-	serviceID int,
+	clickTransId int64,
+	serviceId int64,
 	secretKey string,
-	merchantTransID string,
+	merchantTransId string,
 	amount float64,
-	action int,
+	action int32,
 	signTime string, // format: "YYYY-MM-DD HH:mm:ss"
 ) bool {
 	data := fmt.Sprintf(
 		"%d%d%s%s%.2f%d%s",
-		clickTransID,
-		serviceID,
+		clickTransId,
+		serviceId,
 		secretKey,
-		merchantTransID,
+		merchantTransId,
 		amount,
 		action,
 		signTime,
@@ -39,22 +39,22 @@ func ValidatePrepareSignString(
 // Formula: md5(click_trans_id + service_id + SECRET_KEY + merchant_trans_id + merchant_prepare_id + amount + action + sign_time)
 func ValidateCompleteSignString(
 	actualSign string,
-	clickTransID int64,
-	serviceID int,
+	clickTransId int64,
+	serviceId int64,
 	secretKey string,
-	merchantTransID string,
-	merchantPrepareID int64,
+	merchantTransId string,
+	merchantPrepareId int64,
 	amount float64,
-	action int,
+	action int32,
 	signTime string, // format: "YYYY-MM-DD HH:mm:ss"
 ) bool {
 	data := fmt.Sprintf(
 		"%d%d%s%s%d%.2f%d%s",
-		clickTransID,
-		serviceID,
+		clickTransId,
+		serviceId,
 		secretKey,
-		merchantTransID,
-		merchantPrepareID,
+		merchantTransId,
+		merchantPrepareId,
 		amount,
 		action,
 		signTime,

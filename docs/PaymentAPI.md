@@ -241,7 +241,7 @@ import (
 )
 
 func main() {
-	clickPassPaymentRequest := *openapiclient.NewClickPassPaymentRequest(int64(123), "OtpData_example", float32(123)) // ClickPassPaymentRequest | 
+	clickPassPaymentRequest := *openapiclient.NewClickPassPaymentRequest(int64(123), "OtpData_example", float64(123)) // ClickPassPaymentRequest | 
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -443,7 +443,7 @@ import (
 func main() {
 	serviceId := int64(789) // int64 | 
 	paymentId := int64(789) // int64 | 
-	amount := float32(3.4) // float32 | 
+	amount := float64(1.2) // float64 | 
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -465,7 +465,7 @@ Name | Type | Description  | Notes
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
 **serviceId** | **int64** |  | 
 **paymentId** | **int64** |  | 
-**amount** | **float32** |  | 
+**amount** | **float64** |  | 
 
 ### Other Parameters
 
@@ -515,7 +515,7 @@ import (
 )
 
 func main() {
-	tokenPaymentRequest := *openapiclient.NewTokenPaymentRequest(int64(123), "CardToken_example", float32(123), "TransactionParameter_example") // TokenPaymentRequest | 
+	tokenPaymentRequest := *openapiclient.NewTokenPaymentRequest(int64(123), "CardToken_example", float64(123), "TransactionParameter_example") // TokenPaymentRequest | 
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)

@@ -479,7 +479,7 @@
             "required": true,
             "schema": {
               "type": "number",
-              "format": "float"
+              "format": "double"
             }
           }
         ],
@@ -659,7 +659,7 @@
           },
           "service_id": {
             "type": "integer",
-            "format": "int32",
+            "format": "int64",
             "description": "ID of the service."
           },
           "click_paydoc_id": {
@@ -673,7 +673,7 @@
           },
           "amount": {
             "type": "number",
-            "format": "float",
+            "format": "double",
             "description": "Payment amount (in soums)."
           },
           "action": {
@@ -722,7 +722,7 @@
           },
           "merchant_prepare_id": {
             "type": "integer",
-            "format": "int32",
+            "format": "int64",
             "description": "Payment ID in the supplier's billing system."
           },
           "error": {
@@ -760,7 +760,7 @@
           },
           "service_id": {
             "type": "integer",
-            "format": "int32",
+            "format": "int64",
             "description": "ID of the service."
           },
           "click_paydoc_id": {
@@ -774,12 +774,12 @@
           },
           "merchant_prepare_id": {
             "type": "integer",
-            "format": "int32",
+            "format": "int64",
             "description": "Payment ID received during Prepare stage for confirmation."
           },
           "amount": {
             "type": "number",
-            "format": "float",
+            "format": "double",
             "description": "Payment amount (in soums)."
           },
           "action": {
@@ -828,7 +828,7 @@
           },
           "merchant_confirm_id": {
             "type": "integer",
-            "format": "int32",
+            "format": "int64",
             "description": "Transaction ID to complete the payment in the billing system. May be 0 if not applicable."
           },
           "error": {
@@ -856,7 +856,7 @@
           },
           "amount": {
             "type": "number",
-            "format": "float",
+            "format": "double",
             "description": "Payment amount"
           },
           "cashbox_code": {
@@ -1202,7 +1202,7 @@
           },
           "amount": {
             "type": "number",
-            "format": "float",
+            "format": "double",
             "description": "Requested amount"
           },
           "phone_number": {
@@ -1403,7 +1403,7 @@
           },
           "amount": {
             "type": "number",
-            "format": "float",
+            "format": "double",
             "description": "Payment amount"
           },
           "transaction_parameter": {

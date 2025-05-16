@@ -13,7 +13,7 @@ package clickapi
 
 import (
 	"bytes"
-	"enco
+	"encoding/json"
 	"fmt"
 )
 

@@ -25,7 +25,7 @@ type InvoiceRequest struct {
 	// Service ID
 	ServiceId int64 `form:"service_id" json:"service_id"` // Service ID
 	// Requested amount
-	Amount float32 `form:"amount" json:"amount"` // Requested amount
+	Amount float64 `form:"amount" json:"amount"` // Requested amount
 	// Invoice receiver
 	PhoneNumber string `form:"phone_number" json:"phone_number"` // Invoice receiver
 	// Order ID or personal account
@@ -38,7 +38,7 @@ type _InvoiceRequest InvoiceRequest
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewInvoiceRequest(serviceId int64, amount float32, phoneNumber string, merchantTransId string) *InvoiceRequest {
+func NewInvoiceRequest(serviceId int64, amount float64, phoneNumber string, merchantTransId string) *InvoiceRequest {
 	this := InvoiceRequest{}
 	this.ServiceId = serviceId
 	this.Amount = amount
@@ -80,9 +80,9 @@ func (o *InvoiceRequest) SetServiceId(v int64) {
 }
 
 // GetAmount returns the Amount field value
-func (o *InvoiceRequest) GetAmount() float32 {
+func (o *InvoiceRequest) GetAmount() float64 {
 	if o == nil {
-		var ret float32
+		var ret float64
 		return ret
 	}
 
@@ -91,7 +91,7 @@ func (o *InvoiceRequest) GetAmount() float32 {
 
 // GetAmountOk returns a tuple with the Amount field value
 // and a boolean to check if the value has been set.
-func (o *InvoiceRequest) GetAmountOk() (*float32, bool) {
+func (o *InvoiceRequest) GetAmountOk() (*float64, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -99,7 +99,7 @@ func (o *InvoiceRequest) GetAmountOk() (*float32, bool) {
 }
 
 // SetAmount sets field value
-func (o *InvoiceRequest) SetAmount(v float32) {
+func (o *InvoiceRequest) SetAmount(v float64) {
 	o.Amount = v
 }
 

@@ -6,7 +6,7 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **ClickTransId** | **int64** | Payment ID in CLICK system. | 
 **MerchantTransId** | **string** | Order ID / personal account / login in the supplier billing system. | 
-**MerchantPrepareId** | **int32** | Payment ID in the supplier&#39;s billing system. | 
+**MerchantPrepareId** | **int64** | Payment ID in the supplier&#39;s billing system. | 
 **Error** | **int32** | Status code for completion of payment. 0 – success. Otherwise, an error code. | 
 **ErrorNote** | **string** | Description of the error code or result. | 
 
@@ -14,7 +14,7 @@ Name | Type | Description | Notes
 
 ### NewPrepareResponse
 
-`func NewPrepareResponse(clickTransId int64, merchantTransId string, merchantPrepareId int32, error_ int32, errorNote string, ) *PrepareResponse`
+`func NewPrepareResponse(clickTransId int64, merchantTransId string, merchantPrepareId int64, error_ int32, errorNote string, ) *PrepareResponse`
 
 NewPrepareResponse instantiates a new PrepareResponse object
 This constructor will assign default values to properties that have it defined,
@@ -71,20 +71,20 @@ SetMerchantTransId sets MerchantTransId field to given value.
 
 ### GetMerchantPrepareId
 
-`func (o *PrepareResponse) GetMerchantPrepareId() int32`
+`func (o *PrepareResponse) GetMerchantPrepareId() int64`
 
 GetMerchantPrepareId returns the MerchantPrepareId field if non-nil, zero value otherwise.
 
 ### GetMerchantPrepareIdOk
 
-`func (o *PrepareResponse) GetMerchantPrepareIdOk() (*int32, bool)`
+`func (o *PrepareResponse) GetMerchantPrepareIdOk() (*int64, bool)`
 
 GetMerchantPrepareIdOk returns a tuple with the MerchantPrepareId field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetMerchantPrepareId
 
-`func (o *PrepareResponse) SetMerchantPrepareId(v int32)`
+`func (o *PrepareResponse) SetMerchantPrepareId(v int64)`
 
 SetMerchantPrepareId sets MerchantPrepareId field to given value.
 
