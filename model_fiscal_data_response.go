@@ -21,9 +21,9 @@ var _ MappedNullable = &FiscalDataResponse{}
 // FiscalDataResponse struct for FiscalDataResponse
 type FiscalDataResponse struct {
 	// Payment Id
-	PaymentId *int64 `json:"paymentId,omitempty" xml:"paymentId"`
+	PaymentId *int64 `form:"paymentId" json:"paymentId,omitempty"` // Payment Id
 	// URL
-	QrCodeURL *string `json:"qrCodeURL,omitempty" xml:"qrCodeURL"`
+	QrCodeURL *string `form:"qrCodeURL" json:"qrCodeURL,omitempty"` // URL
 }
 
 // NewFiscalDataResponse instantiates a new FiscalDataResponse object
@@ -108,7 +108,7 @@ func (o *FiscalDataResponse) SetQrCodeURL(v string) {
 }
 
 func (o FiscalDataResponse) MarshalJSON() ([]byte, error) {
-	toSerialize,err := o.ToMap()
+	toSerialize, err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
 	}
@@ -161,5 +161,3 @@ func (v *NullableFiscalDataResponse) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
-
-

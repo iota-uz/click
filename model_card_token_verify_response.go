@@ -21,11 +21,11 @@ var _ MappedNullable = &CardTokenVerifyResponse{}
 // CardTokenVerifyResponse struct for CardTokenVerifyResponse
 type CardTokenVerifyResponse struct {
 	// Error code
-	ErrorCode *int32 `json:"error_code,omitempty" xml:"error_code"`
+	ErrorCode *int32 `form:"error_code" json:"error_code,omitempty"` // Error code
 	// Error description
-	ErrorNote *string `json:"error_note,omitempty" xml:"error_note"`
+	ErrorNote *string `form:"error_note" json:"error_note,omitempty"` // Error description
 	// Card number
-	CardNumber *string `json:"card_number,omitempty" xml:"card_number"`
+	CardNumber *string `form:"card_number" json:"card_number,omitempty"` // Card number
 }
 
 // NewCardTokenVerifyResponse instantiates a new CardTokenVerifyResponse object
@@ -142,7 +142,7 @@ func (o *CardTokenVerifyResponse) SetCardNumber(v string) {
 }
 
 func (o CardTokenVerifyResponse) MarshalJSON() ([]byte, error) {
-	toSerialize,err := o.ToMap()
+	toSerialize, err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
 	}
@@ -198,5 +198,3 @@ func (v *NullableCardTokenVerifyResponse) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
-
-

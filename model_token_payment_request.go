@@ -12,8 +12,8 @@ Contact: danil@iota.uz
 package clickapi
 
 import (
-	"encoding/json"
 	"bytes"
+	"encoding/json"
 	"fmt"
 )
 
@@ -23,13 +23,13 @@ var _ MappedNullable = &TokenPaymentRequest{}
 // TokenPaymentRequest struct for TokenPaymentRequest
 type TokenPaymentRequest struct {
 	// Service ID
-	ServiceId int64 `json:"service_id" xml:"service_id"`
+	ServiceId int64 `form:"service_id" json:"service_id"` // Service ID
 	// Card token
-	CardToken string `json:"card_token" xml:"card_token"`
+	CardToken string `form:"card_token" json:"card_token"` // Card token
 	// Payment amount
-	Amount float32 `json:"amount" xml:"amount"`
+	Amount float32 `form:"amount" json:"amount"` // Payment amount
 	// Merchant transaction ID
-	TransactionParameter string `json:"transaction_parameter" xml:"transaction_parameter"`
+	TransactionParameter string `form:"transaction_parameter" json:"transaction_parameter"` // Merchant transaction ID
 }
 
 type _TokenPaymentRequest TokenPaymentRequest
@@ -152,7 +152,7 @@ func (o *TokenPaymentRequest) SetTransactionParameter(v string) {
 }
 
 func (o TokenPaymentRequest) MarshalJSON() ([]byte, error) {
-	toSerialize,err := o.ToMap()
+	toSerialize, err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
 	}
@@ -184,10 +184,10 @@ func (o *TokenPaymentRequest) UnmarshalJSON(data []byte) (err error) {
 	err = json.Unmarshal(data, &allProperties)
 
 	if err != nil {
-		return err;
+		return err
 	}
 
-	for _, requiredProperty := range(requiredProperties) {
+	for _, requiredProperty := range requiredProperties {
 		if _, exists := allProperties[requiredProperty]; !exists {
 			return fmt.Errorf("no value given for required property %v", requiredProperty)
 		}
@@ -243,5 +243,3 @@ func (v *NullableTokenPaymentRequest) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
-
-

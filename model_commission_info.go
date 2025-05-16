@@ -21,9 +21,9 @@ var _ MappedNullable = &CommissionInfo{}
 // CommissionInfo struct for CommissionInfo
 type CommissionInfo struct {
 	// TIN
-	TIN *string `json:"TIN,omitempty" xml:"TIN"`
+	TIN *string `form:"TIN" json:"TIN,omitempty"` // TIN
 	// PINFL
-	PINFL *string `json:"PINFL,omitempty" xml:"PINFL"`
+	PINFL *string `form:"PINFL" json:"PINFL,omitempty"` // PINFL
 }
 
 // NewCommissionInfo instantiates a new CommissionInfo object
@@ -108,7 +108,7 @@ func (o *CommissionInfo) SetPINFL(v string) {
 }
 
 func (o CommissionInfo) MarshalJSON() ([]byte, error) {
-	toSerialize,err := o.ToMap()
+	toSerialize, err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
 	}
@@ -161,5 +161,3 @@ func (v *NullableCommissionInfo) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
-
-

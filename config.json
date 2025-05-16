@@ -22,5 +22,6 @@
   "withAWSV4Signature": false,
   "withGoMod": true,
   "withXml": true,
-  "apiTests": false
+  "apiTests": false,
+  "vendorExtensions": true
 }

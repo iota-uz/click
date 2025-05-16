@@ -21,13 +21,13 @@ var _ MappedNullable = &PaymentStatusByMTIResponse{}
 // PaymentStatusByMTIResponse struct for PaymentStatusByMTIResponse
 type PaymentStatusByMTIResponse struct {
 	// Error code
-	ErrorCode *int32 `json:"error_code,omitempty" xml:"error_code"`
+	ErrorCode *int32 `form:"error_code" json:"error_code,omitempty"` // Error code
 	// Error description
-	ErrorNote *string `json:"error_note,omitempty" xml:"error_note"`
+	ErrorNote *string `form:"error_note" json:"error_note,omitempty"` // Error description
 	// Payment Identifier
-	PaymentId *int64 `json:"payment_id,omitempty" xml:"payment_id"`
+	PaymentId *int64 `form:"payment_id" json:"payment_id,omitempty"` // Payment Identifier
 	// Merchant transaction ID
-	MerchantTransId *string `json:"merchant_trans_id,omitempty" xml:"merchant_trans_id"`
+	MerchantTransId *string `form:"merchant_trans_id" json:"merchant_trans_id,omitempty"` // Merchant transaction ID
 }
 
 // NewPaymentStatusByMTIResponse instantiates a new PaymentStatusByMTIResponse object
@@ -176,7 +176,7 @@ func (o *PaymentStatusByMTIResponse) SetMerchantTransId(v string) {
 }
 
 func (o PaymentStatusByMTIResponse) MarshalJSON() ([]byte, error) {
-	toSerialize,err := o.ToMap()
+	toSerialize, err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
 	}
@@ -235,5 +235,3 @@ func (v *NullablePaymentStatusByMTIResponse) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
-
-

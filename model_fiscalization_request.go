@@ -12,8 +12,8 @@ Contact: danil@iota.uz
 package clickapi
 
 import (
-	"encoding/json"
 	"bytes"
+	"encoding/json"
 	"fmt"
 )
 
@@ -23,17 +23,17 @@ var _ MappedNullable = &FiscalizationRequest{}
 // FiscalizationRequest struct for FiscalizationRequest
 type FiscalizationRequest struct {
 	// Service ID
-	ServiceId int64 `json:"service_id" xml:"service_id"`
+	ServiceId int64 `form:"service_id" json:"service_id"` // Service ID
 	// Payment Identifier
-	PaymentId int64 `json:"payment_id" xml:"payment_id"`
+	PaymentId int64 `form:"payment_id" json:"payment_id"` // Payment Identifier
 	// Items or services list
-	Items []Item `json:"items" xml:"items"`
+	Items []Item `form:"items" json:"items"` // Items or services list
 	// Amount paid by e-cash in tiyins
-	ReceivedEcash *int32 `json:"received_ecash,omitempty" xml:"received_ecash"`
+	ReceivedEcash *int32 `form:"received_ecash" json:"received_ecash,omitempty"` // Amount paid by e-cash in tiyins
 	// Amount paid by cash in tiyins
-	ReceivedCash *int32 `json:"received_cash,omitempty" xml:"received_cash"`
+	ReceivedCash *int32 `form:"received_cash" json:"received_cash,omitempty"` // Amount paid by cash in tiyins
 	// Amount paid by card in tiyins
-	ReceivedCard *int32 `json:"received_card,omitempty" xml:"received_card"`
+	ReceivedCard *int32 `form:"received_card" json:"received_card,omitempty"` // Amount paid by card in tiyins
 }
 
 type _FiscalizationRequest FiscalizationRequest
@@ -227,7 +227,7 @@ func (o *FiscalizationRequest) SetReceivedCard(v int32) {
 }
 
 func (o FiscalizationRequest) MarshalJSON() ([]byte, error) {
-	toSerialize,err := o.ToMap()
+	toSerialize, err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
 	}
@@ -266,10 +266,10 @@ func (o *FiscalizationRequest) UnmarshalJSON(data []byte) (err error) {
 	err = json.Unmarshal(data, &allProperties)
 
 	if err != nil {
-		return err;
+		return err
 	}
 
-	for _, requiredProperty := range(requiredProperties) {
+	for _, requiredProperty := range requiredProperties {
 		if _, exists := allProperties[requiredProperty]; !exists {
 			return fmt.Errorf("no value given for required property %v", requiredProperty)
 		}
@@ -325,5 +325,3 @@ func (v *NullableFiscalizationRequest) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
-
-

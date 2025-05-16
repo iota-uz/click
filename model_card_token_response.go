@@ -21,15 +21,15 @@ var _ MappedNullable = &CardTokenResponse{}
 // CardTokenResponse struct for CardTokenResponse
 type CardTokenResponse struct {
 	// Error code
-	ErrorCode *int32 `json:"error_code,omitempty" xml:"error_code"`
+	ErrorCode *int32 `form:"error_code" json:"error_code,omitempty"` // Error code
 	// Error description
-	ErrorNote *string `json:"error_note,omitempty" xml:"error_note"`
+	ErrorNote *string `form:"error_note" json:"error_note,omitempty"` // Error description
 	// Card token
-	CardToken *string `json:"card_token,omitempty" xml:"card_token"`
+	CardToken *string `form:"card_token" json:"card_token,omitempty"` // Card token
 	// User phone number
-	PhoneNumber *string `json:"phone_number,omitempty" xml:"phone_number"`
+	PhoneNumber *string `form:"phone_number" json:"phone_number,omitempty"` // User phone number
 	// Type of created token
-	Temporary *int32 `json:"temporary,omitempty" xml:"temporary"`
+	Temporary *int32 `form:"temporary" json:"temporary,omitempty"` // Type of created token
 }
 
 // NewCardTokenResponse instantiates a new CardTokenResponse object
@@ -210,7 +210,7 @@ func (o *CardTokenResponse) SetTemporary(v int32) {
 }
 
 func (o CardTokenResponse) MarshalJSON() ([]byte, error) {
-	toSerialize,err := o.ToMap()
+	toSerialize, err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
 	}
@@ -272,5 +272,3 @@ func (v *NullableCardTokenResponse) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
-
-

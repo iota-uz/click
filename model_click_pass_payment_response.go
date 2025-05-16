@@ -21,23 +21,23 @@ var _ MappedNullable = &ClickPassPaymentResponse{}
 // ClickPassPaymentResponse struct for ClickPassPaymentResponse
 type ClickPassPaymentResponse struct {
 	// Error code
-	ErrorCode *int32 `json:"error_code,omitempty" xml:"error_code"`
+	ErrorCode *int32 `form:"error_code" json:"error_code,omitempty"` // Error code
 	// Error description
-	ErrorNote *string `json:"error_note,omitempty" xml:"error_note"`
+	ErrorNote *string `form:"error_note" json:"error_note,omitempty"` // Error description
 	// Payment Identifier
-	PaymentId *int64 `json:"payment_id,omitempty" xml:"payment_id"`
+	PaymentId *int64 `form:"payment_id" json:"payment_id,omitempty"` // Payment Identifier
 	// Payment status code
-	PaymentStatus *int32 `json:"payment_status,omitempty" xml:"payment_status"`
+	PaymentStatus *int32 `form:"payment_status" json:"payment_status,omitempty"` // Payment status code
 	// Confirmation mode status
-	ConfirmMode *int32 `json:"confirm_mode,omitempty" xml:"confirm_mode"`
+	ConfirmMode *int32 `form:"confirm_mode" json:"confirm_mode,omitempty"` // Confirmation mode status
 	// Card type
-	CardType *string `json:"card_type,omitempty" xml:"card_type"`
+	CardType *string `form:"card_type" json:"card_type,omitempty"` // Card type
 	// Card processing
-	ProcessingType *string `json:"processing_type,omitempty" xml:"processing_type"`
+	ProcessingType *string `form:"processing_type" json:"processing_type,omitempty"` // Card processing
 	// Masked card number
-	CardNumber *string `json:"card_number,omitempty" xml:"card_number"`
+	CardNumber *string `form:"card_number" json:"card_number,omitempty"` // Masked card number
 	// Phone number
-	PhoneNumber *string `json:"phone_number,omitempty" xml:"phone_number"`
+	PhoneNumber *string `form:"phone_number" json:"phone_number,omitempty"` // Phone number
 }
 
 // NewClickPassPaymentResponse instantiates a new ClickPassPaymentResponse object
@@ -346,7 +346,7 @@ func (o *ClickPassPaymentResponse) SetPhoneNumber(v string) {
 }
 
 func (o ClickPassPaymentResponse) MarshalJSON() ([]byte, error) {
-	toSerialize,err := o.ToMap()
+	toSerialize, err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
 	}
@@ -420,5 +420,3 @@ func (v *NullableClickPassPaymentResponse) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
-
-

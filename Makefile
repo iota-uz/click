@@ -17,6 +17,7 @@ all: $(GENERATOR_JAR)
 		-g go \
 		-c $(CONFIG_FILE) \
 		-o $(OUTPUT_DIR) \
+		-t ./go-templates \
 		--global-property=apiTests=false,modelTests=false
 	@echo "✅ Golang client generated in $(OUTPUT_DIR)"
 

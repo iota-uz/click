@@ -14,6 +14,8 @@ docs/CardTokenVerifyResponse.md
 docs/ClickPassPaymentRequest.md
 docs/ClickPassPaymentResponse.md
 docs/CommissionInfo.md
+docs/CompleteRequest.md
+docs/CompleteResponse.md
 docs/ConfirmationModeResponse.md
 docs/DeleteCardTokenResponse.md
 docs/FiscalDataResponse.md
@@ -34,6 +36,8 @@ docs/PaymentConfirmationResponse.md
 docs/PaymentReversalResponse.md
 docs/PaymentStatusByMTIResponse.md
 docs/PaymentStatusResponse.md
+docs/PrepareRequest.md
+docs/PrepareResponse.md
 docs/TokenPaymentRequest.md
 docs/TokenPaymentResponse.md
 go.mod
@@ -45,6 +49,8 @@ model_card_token_verify_response.go
 model_click_pass_payment_request.go
 model_click_pass_payment_response.go
 model_commission_info.go
+model_complete_request.go
+model_complete_response.go
 model_confirmation_mode_response.go
 model_delete_card_token_response.go
 model_fiscal_data_response.go
@@ -62,6 +68,8 @@ model_payment_confirmation_response.go
 model_payment_reversal_response.go
 model_payment_status_by_mti_response.go
 model_payment_status_response.go
+model_prepare_request.go
+model_prepare_response.go
 model_token_payment_request.go
 model_token_payment_response.go
 response.go

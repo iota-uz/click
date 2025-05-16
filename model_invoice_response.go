@@ -21,11 +21,11 @@ var _ MappedNullable = &InvoiceResponse{}
 // InvoiceResponse struct for InvoiceResponse
 type InvoiceResponse struct {
 	// Error code
-	ErrorCode *int32 `json:"error_code,omitempty" xml:"error_code"`
+	ErrorCode *int32 `form:"error_code" json:"error_code,omitempty"` // Error code
 	// Error description
-	ErrorNote *string `json:"error_note,omitempty" xml:"error_note"`
+	ErrorNote *string `form:"error_note" json:"error_note,omitempty"` // Error description
 	// Invoice Identifier
-	InvoiceId *int64 `json:"invoice_id,omitempty" xml:"invoice_id"`
+	InvoiceId *int64 `form:"invoice_id" json:"invoice_id,omitempty"` // Invoice Identifier
 }
 
 // NewInvoiceResponse instantiates a new InvoiceResponse object
@@ -142,7 +142,7 @@ func (o *InvoiceResponse) SetInvoiceId(v int64) {
 }
 
 func (o InvoiceResponse) MarshalJSON() ([]byte, error) {
-	toSerialize,err := o.ToMap()
+	toSerialize, err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
 	}
@@ -198,5 +198,3 @@ func (v *NullableInvoiceResponse) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
-
-

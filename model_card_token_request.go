@@ -12,8 +12,8 @@ Contact: danil@iota.uz
 package clickapi
 
 import (
-	"encoding/json"
 	"bytes"
+	"enco
 	"fmt"
 )
 
@@ -23,13 +23,13 @@ var _ MappedNullable = &CardTokenRequest{}
 // CardTokenRequest struct for CardTokenRequest
 type CardTokenRequest struct {
 	// Service ID
-	ServiceId int64 `json:"service_id" xml:"service_id"`
+	ServiceId int64 `form:"service_id" json:"service_id"` // Service ID
 	// Card number
-	CardNumber string `json:"card_number" xml:"card_number"`
+	CardNumber string `form:"card_number" json:"card_number"` // Card number
 	// Card expire date
-	ExpireDate string `json:"expire_date" xml:"expire_date"`
+	ExpireDate string `form:"expire_date" json:"expire_date"` // Card expire date
 	// Create temporary card
-	Temporary int32 `json:"temporary" xml:"temporary"`
+	Temporary int32 `form:"temporary" json:"temporary"` // Create temporary card
 }
 
 type _CardTokenRequest CardTokenRequest
@@ -152,7 +152,7 @@ func (o *CardTokenRequest) SetTemporary(v int32) {
 }
 
 func (o CardTokenRequest) MarshalJSON() ([]byte, error) {
-	toSerialize,err := o.ToMap()
+	toSerialize, err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
 	}
@@ -184,10 +184,10 @@ func (o *CardTokenRequest) UnmarshalJSON(data []byte) (err error) {
 	err = json.Unmarshal(data, &allProperties)
 
 	if err != nil {
-		return err;
+		return err
 	}
 
-	for _, requiredProperty := range(requiredProperties) {
+	for _, requiredProperty := range requiredProperties {
 		if _, exists := allProperties[requiredProperty]; !exists {
 			return fmt.Errorf("no value given for required property %v", requiredProperty)
 		}
@@ -243,5 +243,3 @@ func (v *NullableCardTokenRequest) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
-
-

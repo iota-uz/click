@@ -21,9 +21,9 @@ var _ MappedNullable = &ConfirmationModeResponse{}
 // ConfirmationModeResponse struct for ConfirmationModeResponse
 type ConfirmationModeResponse struct {
 	// Error code
-	ErrorCode *int32 `json:"error_code,omitempty" xml:"error_code"`
+	ErrorCode *int32 `form:"error_code" json:"error_code,omitempty"` // Error code
 	// Confirmation mode status
-	ErrorNote *string `json:"error_note,omitempty" xml:"error_note"`
+	ErrorNote *string `form:"error_note" json:"error_note,omitempty"` // Confirmation mode status
 }
 
 // NewConfirmationModeResponse instantiates a new ConfirmationModeResponse object
@@ -108,7 +108,7 @@ func (o *ConfirmationModeResponse) SetErrorNote(v string) {
 }
 
 func (o ConfirmationModeResponse) MarshalJSON() ([]byte, error) {
-	toSerialize,err := o.ToMap()
+	toSerialize, err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
 	}
@@ -161,5 +161,3 @@ func (v *NullableConfirmationModeResponse) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
-
-

@@ -12,8 +12,8 @@ Contact: danil@iota.uz
 package clickapi
 
 import (
-	"encoding/json"
 	"bytes"
+	"encoding/json"
 	"fmt"
 )
 
@@ -23,32 +23,32 @@ var _ MappedNullable = &Item{}
 // Item struct for Item
 type Item struct {
 	// Item/service name with units at the end
-	Name string `json:"Name" xml:"Name"`
+	Name string `form:"Name" json:"Name"` // Item/service name with units at the end
 	// Barcode
-	Barcode *string `json:"Barcode,omitempty" xml:"Barcode"`
+	Barcode *string `form:"Barcode" json:"Barcode,omitempty"` // Barcode
 	// Array of marking codes
-	Labels []string `json:"Labels,omitempty" xml:"Labels"`
+	Labels []string `form:"Labels" json:"Labels,omitempty"` // Array of marking codes
 	// SPIC code
-	SPIC string `json:"SPIC" xml:"SPIC"`
+	SPIC string `form:"SPIC" json:"SPIC"` // SPIC code
 	// Unit code
-	Units int64 `json:"Units" xml:"Units"`
+	Units int64 `form:"Units" json:"Units"` // Unit code
 	// Package Code
-	PackageCode *string `json:"PackageCode,omitempty" xml:"PackageCode"`
+	PackageCode *string `form:"PackageCode" json:"PackageCode,omitempty"` // Package Code
 	// Price of one product/service unit
-	GoodPrice int64 `json:"GoodPrice" xml:"GoodPrice"`
+	GoodPrice int64 `form:"GoodPrice" json:"GoodPrice"` // Price of one product/service unit
 	// The total amount of the item, including quantity, excluding discounts
-	Price *int64 `json:"Price,omitempty" xml:"Price"`
+	Price *int64 `form:"Price" json:"Price,omitempty"` // The total amount of the item, including quantity, excluding discounts
 	// Quantity
-	Amount *int64 `json:"Amount,omitempty" xml:"Amount"`
+	Amount *int64 `form:"Amount" json:"Amount,omitempty"` // Quantity
 	// Amount of VAT in tiyins
-	VAT *int64 `json:"VAT,omitempty" xml:"VAT"`
+	VAT *int64 `form:"VAT" json:"VAT,omitempty"` // Amount of VAT in tiyins
 	// VAT percentage
-	VATPercent *int32 `json:"VATPercent,omitempty" xml:"VATPercent"`
+	VATPercent *int32 `form:"VATPercent" json:"VATPercent,omitempty"` // VAT percentage
 	// Discount
-	Discount *int64 `json:"Discount,omitempty" xml:"Discount"`
+	Discount *int64 `form:"Discount" json:"Discount,omitempty"` // Discount
 	// Other discounts
-	Other *int64 `json:"Other,omitempty" xml:"Other"`
-	CommissionInfo *CommissionInfo `json:"CommissionInfo,omitempty" xml:"CommissionInfo"`
+	Other          *int64          `form:"Other" json:"Other,omitempty"` // Other discounts
+	CommissionInfo *CommissionInfo `form:"CommissionInfo" json:"CommissionInfo,omitempty"`
 }
 
 type _Item Item
@@ -491,7 +491,7 @@ func (o *Item) SetCommissionInfo(v CommissionInfo) {
 }
 
 func (o Item) MarshalJSON() ([]byte, error) {
-	toSerialize,err := o.ToMap()
+	toSerialize, err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
 	}
@@ -553,10 +553,10 @@ func (o *Item) UnmarshalJSON(data []byte) (err error) {
 	err = json.Unmarshal(data, &allProperties)
 
 	if err != nil {
-		return err;
+		return err
 	}
 
-	for _, requiredProperty := range(requiredProperties) {
+	for _, requiredProperty := range requiredProperties {
 		if _, exists := allProperties[requiredProperty]; !exists {
 			return fmt.Errorf("no value given for required property %v", requiredProperty)
 		}
@@ -612,5 +612,3 @@ func (v *NullableItem) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
-
-

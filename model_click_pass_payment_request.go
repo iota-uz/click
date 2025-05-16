@@ -12,8 +12,8 @@ Contact: danil@iota.uz
 package clickapi
 
 import (
-	"encoding/json"
 	"bytes"
+	"encoding/json"
 	"fmt"
 )
 
@@ -23,15 +23,15 @@ var _ MappedNullable = &ClickPassPaymentRequest{}
 // ClickPassPaymentRequest struct for ClickPassPaymentRequest
 type ClickPassPaymentRequest struct {
 	// Service ID
-	ServiceId int64 `json:"service_id" xml:"service_id"`
+	ServiceId int64 `form:"service_id" json:"service_id"` // Service ID
 	// QR code contents
-	OtpData string `json:"otp_data" xml:"otp_data"`
+	OtpData string `form:"otp_data" json:"otp_data"` // QR code contents
 	// Payment amount
-	Amount float32 `json:"amount" xml:"amount"`
+	Amount float32 `form:"amount" json:"amount"` // Payment amount
 	// Cashbox identifier
-	CashboxCode *string `json:"cashbox_code,omitempty" xml:"cashbox_code"`
+	CashboxCode *string `form:"cashbox_code" json:"cashbox_code,omitempty"` // Cashbox identifier
 	// Merchant transaction ID
-	TransactionId *string `json:"transaction_id,omitempty" xml:"transaction_id"`
+	TransactionId *string `form:"transaction_id" json:"transaction_id,omitempty"` // Merchant transaction ID
 }
 
 type _ClickPassPaymentRequest ClickPassPaymentRequest
@@ -193,7 +193,7 @@ func (o *ClickPassPaymentRequest) SetTransactionId(v string) {
 }
 
 func (o ClickPassPaymentRequest) MarshalJSON() ([]byte, error) {
-	toSerialize,err := o.ToMap()
+	toSerialize, err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
 	}
@@ -229,10 +229,10 @@ func (o *ClickPassPaymentRequest) UnmarshalJSON(data []byte) (err error) {
 	err = json.Unmarshal(data, &allProperties)
 
 	if err != nil {
-		return err;
+		return err
 	}
 
-	for _, requiredProperty := range(requiredProperties) {
+	for _, requiredProperty := range requiredProperties {
 		if _, exists := allProperties[requiredProperty]; !exists {
 			return fmt.Errorf("no value given for required property %v", requiredProperty)
 		}
@@ -288,5 +288,3 @@ func (v *NullableClickPassPaymentRequest) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
-
-

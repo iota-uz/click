@@ -21,13 +21,13 @@ var _ MappedNullable = &InvoiceStatusResponse{}
 // InvoiceStatusResponse struct for InvoiceStatusResponse
 type InvoiceStatusResponse struct {
 	// Error code
-	ErrorCode *int32 `json:"error_code,omitempty" xml:"error_code"`
+	ErrorCode *int32 `form:"error_code" json:"error_code,omitempty"` // Error code
 	// Error description
-	ErrorNote *string `json:"error_note,omitempty" xml:"error_note"`
+	ErrorNote *string `form:"error_note" json:"error_note,omitempty"` // Error description
 	// Invoice status code
-	InvoiceStatus *int64 `json:"invoice_status,omitempty" xml:"invoice_status"`
+	InvoiceStatus *int64 `form:"invoice_status" json:"invoice_status,omitempty"` // Invoice status code
 	// Status description
-	InvoiceStatusNote *string `json:"invoice_status_note,omitempty" xml:"invoice_status_note"`
+	InvoiceStatusNote *string `form:"invoice_status_note" json:"invoice_status_note,omitempty"` // Status description
 }
 
 // NewInvoiceStatusResponse instantiates a new InvoiceStatusResponse object
@@ -176,7 +176,7 @@ func (o *InvoiceStatusResponse) SetInvoiceStatusNote(v string) {
 }
 
 func (o InvoiceStatusResponse) MarshalJSON() ([]byte, error) {
-	toSerialize,err := o.ToMap()
+	toSerialize, err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
 	}
@@ -235,5 +235,3 @@ func (v *NullableInvoiceStatusResponse) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
-
-

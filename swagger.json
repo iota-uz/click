@@ -636,6 +636,212 @@
   },
   "components": {
     "schemas": {
+      "PrepareRequest": {
+        "type": "object",
+        "description": "Request parameters for the Prepare stage (action = 0). Used to validate and initialize payment.",
+        "required": [
+          "click_trans_id",
+          "service_id",
+          "click_paydoc_id",
+          "merchant_trans_id",
+          "amount",
+          "action",
+          "error",
+          "error_note",
+          "sign_time",
+          "sign_string"
+        ],
+        "properties": {
+          "click_trans_id": {
+            "type": "integer",
+            "format": "int64",
+            "description": "ID of transaction (iteration) in CLICK system, i.e. attempt to make a payment."
+          },
+          "service_id": {
+            "type": "integer",
+            "format": "int32",
+            "description": "ID of the service."
+          },
+          "click_paydoc_id": {
+            "type": "integer",
+            "format": "int64",
+            "description": "Payment ID in CLICK system. Displayed to the customer in SMS when paying."
+          },
+          "merchant_trans_id": {
+            "type": "string",
+            "description": "Order ID / personal account / login in the supplier billing system."
+          },
+          "amount": {
+            "type": "number",
+            "format": "float",
+            "description": "Payment amount (in soums)."
+          },
+          "action": {
+            "type": "integer",
+            "format": "int32",
+            "description": "Action to perform. 0 – for Prepare stage."
+          },
+          "error": {
+            "type": "integer",
+            "format": "int32",
+            "description": "Status code for completion of payment. 0 – success. Otherwise, an error code."
+          },
+          "error_note": {
+            "type": "string",
+            "description": "Description of the error code or result."
+          },
+          "sign_time": {
+            "type": "string",
+            "description": "Payment date in format: 'YYYY-MM-DD HH:mm:ss'."
+          },
+          "sign_string": {
+            "type": "string",
+            "description": "Verification string. MD5 hash of: click_trans_id + service_id + SECRET_KEY + merchant_trans_id + amount + action + sign_time."
+          }
+        }
+      },
+      "PrepareResponse": {
+        "type": "object",
+        "description": "Response structure for the Prepare stage. Returns status and identifiers.",
+        "required": [
+          "click_trans_id",
+          "merchant_trans_id",
+          "merchant_prepare_id",
+          "error",
+          "error_note"
+        ],
+        "properties": {
+          "click_trans_id": {
+            "type": "integer",
+            "format": "int64",
+            "description": "Payment ID in CLICK system."
+          },
+          "merchant_trans_id": {
+            "type": "string",
+            "description": "Order ID / personal account / login in the supplier billing system."
+          },
+          "merchant_prepare_id": {
+            "type": "integer",
+            "format": "int32",
+            "description": "Payment ID in the supplier's billing system."
+          },
+          "error": {
+            "type": "integer",
+            "format": "int32",
+            "description": "Status code for completion of payment. 0 – success. Otherwise, an error code."
+          },
+          "error_note": {
+            "type": "string",
+            "description": "Description of the error code or result."
+          }
+        }
+      },
+      "CompleteRequest": {
+        "type": "object",
+        "description": "Request parameters for the Complete stage (action = 1). Used to finalize the payment.",
+        "required": [
+          "click_trans_id",
+          "service_id",
+          "click_paydoc_id",
+          "merchant_trans_id",
+          "merchant_prepare_id",
+          "amount",
+          "action",
+          "error",
+          "error_note",
+          "sign_time",
+          "sign_string"
+        ],
+        "properties": {
+          "click_trans_id": {
+            "type": "integer",
+            "format": "int64",
+            "description": "Payment ID in CLICK system."
+          },
+          "service_id": {
+            "type": "integer",
+            "format": "int32",
+            "description": "ID of the service."
+          },
+          "click_paydoc_id": {
+            "type": "integer",
+            "format": "int64",
+            "description": "Payment number in CLICK system. Shown in SMS to customer."
+          },
+          "merchant_trans_id": {
+            "type": "string",
+            "description": "Order ID / personal account / login in the supplier billing system."
+          },
+          "merchant_prepare_id": {
+            "type": "integer",
+            "format": "int32",
+            "description": "Payment ID received during Prepare stage for confirmation."
+          },
+          "amount": {
+            "type": "number",
+            "format": "float",
+            "description": "Payment amount (in soums)."
+          },
+          "action": {
+            "type": "integer",
+            "format": "int32",
+            "description": "Action to perform. 1 – for Complete stage."
+          },
+          "error": {
+            "type": "integer",
+            "format": "int32",
+            "description": "Status code for completion of payment. 0 – success. Otherwise, an error code."
+          },
+          "error_note": {
+            "type": "string",
+            "description": "Description of the error code or result."
+          },
+          "sign_time": {
+            "type": "string",
+            "description": "Payment date in format: 'YYYY-MM-DD HH:mm:ss'."
+          },
+          "sign_string": {
+            "type": "string",
+            "description": "Verification string. MD5 hash of: click_trans_id + service_id + SECRET_KEY + merchant_trans_id + merchant_prepare_id + amount + action + sign_time."
+          }
+        }
+      },
+      "CompleteResponse": {
+        "type": "object",
+        "description": "Response structure for the Complete stage. Returns transaction result.",
+        "required": [
+          "click_trans_id",
+          "merchant_trans_id",
+          "merchant_confirm_id",
+          "error",
+          "error_note"
+        ],
+        "properties": {
+          "click_trans_id": {
+            "type": "integer",
+            "format": "int64",
+            "description": "Payment ID in CLICK system."
+          },
+          "merchant_trans_id": {
+            "type": "string",
+            "description": "Order ID / personal account / login in the supplier billing system."
+          },
+          "merchant_confirm_id": {
+            "type": "integer",
+            "format": "int32",
+            "description": "Transaction ID to complete the payment in the billing system. May be 0 if not applicable."
+          },
+          "error": {
+            "type": "integer",
+            "format": "int32",
+            "description": "Status code for completion of payment. 0 – success. Otherwise, an error code."
+          },
+          "error_note": {
+            "type": "string",
+            "description": "Description of the error code or result."
+          }
+        }
+      },
       "ClickPassPaymentRequest": {
         "type": "object",
         "properties": {

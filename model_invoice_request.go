@@ -12,8 +12,8 @@ Contact: danil@iota.uz
 package clickapi
 
 import (
-	"encoding/json"
 	"bytes"
+	"encoding/json"
 	"fmt"
 )
 
@@ -23,13 +23,13 @@ var _ MappedNullable = &InvoiceRequest{}
 // InvoiceRequest struct for InvoiceRequest
 type InvoiceRequest struct {
 	// Service ID
-	ServiceId int64 `json:"service_id" xml:"service_id"`
+	ServiceId int64 `form:"service_id" json:"service_id"` // Service ID
 	// Requested amount
-	Amount float32 `json:"amount" xml:"amount"`
+	Amount float32 `form:"amount" json:"amount"` // Requested amount
 	// Invoice receiver
-	PhoneNumber string `json:"phone_number" xml:"phone_number"`
+	PhoneNumber string `form:"phone_number" json:"phone_number"` // Invoice receiver
 	// Order ID or personal account
-	MerchantTransId string `json:"merchant_trans_id" xml:"merchant_trans_id"`
+	MerchantTransId string `form:"merchant_trans_id" json:"merchant_trans_id"` // Order ID or personal account
 }
 
 type _InvoiceRequest InvoiceRequest
@@ -152,7 +152,7 @@ func (o *InvoiceRequest) SetMerchantTransId(v string) {
 }
 
 func (o InvoiceRequest) MarshalJSON() ([]byte, error) {
-	toSerialize,err := o.ToMap()
+	toSerialize, err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
 	}
@@ -184,10 +184,10 @@ func (o *InvoiceRequest) UnmarshalJSON(data []byte) (err error) {
 	err = json.Unmarshal(data, &allProperties)
 
 	if err != nil {
-		return err;
+		return err
 	}
 
-	for _, requiredProperty := range(requiredProperties) {
+	for _, requiredProperty := range requiredProperties {
 		if _, exists := allProperties[requiredProperty]; !exists {
 			return fmt.Errorf("no value given for required property %v", requiredProperty)
 		}
@@ -243,5 +243,3 @@ func (v *NullableInvoiceRequest) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
-
-

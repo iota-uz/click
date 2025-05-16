@@ -21,13 +21,13 @@ var _ MappedNullable = &TokenPaymentResponse{}
 // TokenPaymentResponse struct for TokenPaymentResponse
 type TokenPaymentResponse struct {
 	// Error code
-	ErrorCode *int32 `json:"error_code,omitempty" xml:"error_code"`
+	ErrorCode *int32 `form:"error_code" json:"error_code,omitempty"` // Error code
 	// Error description
-	ErrorNote *string `json:"error_note,omitempty" xml:"error_note"`
+	ErrorNote *string `form:"error_note" json:"error_note,omitempty"` // Error description
 	// Payment Identifier
-	PaymentId *int64 `json:"payment_id,omitempty" xml:"payment_id"`
+	PaymentId *int64 `form:"payment_id" json:"payment_id,omitempty"` // Payment Identifier
 	// Payment status code
-	PaymentStatus *int32 `json:"payment_status,omitempty" xml:"payment_status"`
+	PaymentStatus *int32 `form:"payment_status" json:"payment_status,omitempty"` // Payment status code
 }
 
 // NewTokenPaymentResponse instantiates a new TokenPaymentResponse object
@@ -176,7 +176,7 @@ func (o *TokenPaymentResponse) SetPaymentStatus(v int32) {
 }
 
 func (o TokenPaymentResponse) MarshalJSON() ([]byte, error) {
-	toSerialize,err := o.ToMap()
+	toSerialize, err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
 	}
@@ -235,5 +235,3 @@ func (v *NullableTokenPaymentResponse) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
-
-
