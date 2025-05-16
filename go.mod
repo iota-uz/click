@@ -1,4 +1,4 @@
-module github.com/iota-uz/click/clickapi
+module github.com/iota-uz/click
 
 go 1.18
 

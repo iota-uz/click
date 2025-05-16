@@ -7,7 +7,7 @@ INPUT_SPEC = swagger.json
 OUTPUT_DIR = .
 
 GENERATED_FILES_LIST = $(OUTPUT_DIR)/.openapi-generator/FILES
-EXCLUDE_FILES := .gitignore README.md .openapi-generator/FILES
+EXCLUDE_FILES := .gitignore README.md .openapi-generator/FILES go.mod
 
 .PHONY: all
 all: $(GENERATOR_JAR)
