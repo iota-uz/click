@@ -19,20 +19,27 @@ func ValidatePrepareSignString(
 	action int32,
 	signTime string, // format: "YYYY-MM-DD HH:mm:ss"
 ) bool {
-	data := fmt.Sprintf(
-		"%d%d%s%s%.2f%d%s",
+	// Formatted amount without decimal part
+	amountStr := fmt.Sprintf("%.0f", amount)
+
+	// We form a line according to the CLICK specification
+	signString := fmt.Sprintf(
+		"%d%d%s%s%s%d%s",
 		clickTransId,
 		serviceId,
 		secretKey,
 		merchantTransId,
-		amount,
+		amountStr,
 		action,
 		signTime,
 	)
 
-	hash := md5.Sum([]byte(data))
+	// Calculate MD5 hash
+	hash := md5.Sum([]byte(signString))
 	expectedSign := hex.EncodeToString(hash[:])
-	return hmac.Equal([]byte(actualSign), []byte(expectedSign))
+
+	// Compare safely
+	return hmac.Equal([]byte(expectedSign), []byte(actualSign))
 }
 
 // ValidateCompleteSignString validates sign_string for the Complete phase.
@@ -48,19 +55,26 @@ func ValidateCompleteSignString(
 	action int32,
 	signTime string, // format: "YYYY-MM-DD HH:mm:ss"
 ) bool {
-	data := fmt.Sprintf(
-		"%d%d%s%s%d%.2f%d%s",
+	// Formatted amount without decimal part
+	amountStr := fmt.Sprintf("%.0f", amount)
+
+	// We form a line according to the CLICK specification
+	signString := fmt.Sprintf(
+		"%d%d%s%s%d%s%d%s",
 		clickTransId,
 		serviceId,
 		secretKey,
 		merchantTransId,
 		merchantPrepareId,
-		amount,
+		amountStr,
 		action,
 		signTime,
 	)
 
-	hash := md5.Sum([]byte(data))
+	// Calculate MD5 hash
+	hash := md5.Sum([]byte(signString))
 	expectedSign := hex.EncodeToString(hash[:])
-	return hmac.Equal([]byte(actualSign), []byte(expectedSign))
+
+	// Compare safely
+	return hmac.Equal([]byte(expectedSign), []byte(actualSign))
 }
