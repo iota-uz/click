@@ -19,8 +19,9 @@ func ValidatePrepareSignString(
 	action int32,
 	signTime string, // format: "YYYY-MM-DD HH:mm:ss"
 ) bool {
-	// Formatted amount without decimal part
-	amountStr := fmt.Sprintf("%.0f", amount)
+	// Click sends amount in N.NN format (see https://docs.click.uz/click-button/),
+	// so format with two decimals to match byte-for-byte.
+	amountStr := fmt.Sprintf("%.2f", amount)
 
 	// We form a line according to the CLICK specification
 	signString := fmt.Sprintf(
@@ -55,8 +56,9 @@ func ValidateCompleteSignString(
 	action int32,
 	signTime string, // format: "YYYY-MM-DD HH:mm:ss"
 ) bool {
-	// Formatted amount without decimal part
-	amountStr := fmt.Sprintf("%.0f", amount)
+	// Click sends amount in N.NN format (see https://docs.click.uz/click-button/),
+	// so format with two decimals to match byte-for-byte.
+	amountStr := fmt.Sprintf("%.2f", amount)
 
 	// We form a line according to the CLICK specification
 	signString := fmt.Sprintf(
